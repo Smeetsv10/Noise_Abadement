@@ -1,6 +1,7 @@
 clear
 
 %% Initialize parameters
+cte = set_cte();
 figures = true;
 
 %% Calculations
