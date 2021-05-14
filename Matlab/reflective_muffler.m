@@ -19,7 +19,7 @@ for i = 1:length(cte.f)
     %% Change in duct crosssection
     % Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
-    L = 0.300;
+    L = 0.218;
     s = 0.010;
     m = 0.020;
     d = 0.050;
