@@ -37,40 +37,23 @@ for i = 1:length(cte.f)
         
     %% Side branch resonators
     % Helmholtz resonator:
-    % resonator 1:
     l = 0.010; % m
     D_neck = cte.D*0.3;
     h = 0.070; % max 70
-    D_vol = 0.030;
-    V = (pi/4)*D_vol^2*h; % m^3
+    D_vol = 0;
+    V = 5e-5; % m^3
 
     S_1 = pi*(cte.D/2)^2;
     S_s = pi*(D_neck/2)^2;
 
     Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
 
+    %f_damp(i) = cte.c/(2*pi)*sqrt(S_1*l*V);
     f_res(i) = cte.c/(2*pi)*sqrt(S_s/(l*V));
 
-    IL.helmholtz1(i) = 0;
-    TL.helmholtz1(i) = 20*log(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i));
-    
-    % resonator 2:
-    l = 0.010; % m
-    D_neck = cte.D*0.3;
-    h = 0.070; % max 70
-    D_vol = 0.015;
-    V = (pi/4)*D_vol^2*h; % m^3
+    IL.helmholtz(i) = 0;
+    TL.helmholtz(i) = 20*log(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i));
 
-    S_1 = pi*(cte.D/2)^2;
-    S_s = pi*(D_neck/2)^2;
-
-    Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
-
-    f_res(i) = cte.c/(2*pi)*sqrt(S_s/(l*V));
-
-    IL.helmholtz2(i) = 0;
-    TL.helmholtz2(i) = 20*log(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i));
-    
     % Quarter-wavelength resonator:
     H = 0.13; % lambda/4 [m]
     Z_s(i) = -1i*cte.rho_air*cte.c*cot(k*H);  % impedance lambda/4 resonator

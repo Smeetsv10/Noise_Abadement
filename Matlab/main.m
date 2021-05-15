@@ -17,8 +17,10 @@ if figures
     
     % Reflective muffler
     figure(4),
-    subplot(3,1,1)
-    plot(cte.f, abs(TL.helmholtz)), xlabel("f"), ylabel("TR - Helmholtz resonator")
+    subplot(3,1,1), hold on
+    plot(cte.f, abs(TL.helmholtz1)), xlabel("f"), ylabel("TR - Helmholtz resonator")
+    plot(cte.f, abs(TL.helmholtz2)), xlabel("f"), ylabel("TR - Helmholtz resonator")
+
     subplot(3,1,2)
     plot(cte.f, abs(TL.lambda4)), xlabel("f"), ylabel("TR - lambda/4")
     subplot(3,1,3)
@@ -32,4 +34,4 @@ if figures
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion))
 end
 
-%save 'version1_1.mat'
+%save 'version1_2.mat'
