@@ -1,0 +1,127 @@
+Simcenter Nastran 2021.1 (Intel64 Family 6 Model 63 Stepping 2 Windows Server 2016  ) Control File:
+--------------------------------------------------------------------------------------
+Nastran BUFFSIZE=32769 $(c:/program files/siemens/nx1953/nxnastran/conf/nastran.rcf[1])
+Nastran BUFFPOOL=20.0X $(c:/program files/siemens/nx1953/nxnastran/conf/nastran.rcf[4])
+Nastran DIAGA=128 DIAGB=0 $(c:/program files/siemens/nx1953/nxnastran/conf/nastran.rcf[8])
+Nastran SYSTEM(442)=2 $(command line[5])
+Nastran REAL=7513440256 $(Memory limit for MPI and other specialized modules)
+JID='\\stud-home.icts.kuleuven.be\r0721978\Documents\assignement_noise\basic_muffler_sim1-solution_1.dat'
+OUT='./basic_muffler_sim1-solution_1'
+MEM=3381755904
+MACH='Intel64 Family 6 Model 63 Stepping 2'
+OPER='Windows Server 2016'
+OSV=' '
+MODEL='Intel(R) Xeon(R) CPU E5-2695 v3 @ 2.30GHz (SET-S-ME-VCL102)'
+CONFIG=8666
+NPROC=12
+symbol=DELDIR='c:/program files/siemens/nx1953/nxnastran/scnas/nast/del' $(program default)
+symbol=DEMODIR='c:/program files/siemens/nx1953/nxnastran/scnas/nast/demo' $(program default)
+symbol=SSSALTERDIR='c:/program files/siemens/nx1953/nxnastran/scnas/nast/misc/sssalter' $(program default)
+symbol=TPLDIR='c:/program files/siemens/nx1953/nxnastran/scnas/nast/tpl' $(program default)
+SDIR='c:/users/r0721978/appdata/local/temp/46/basic_muffler_sim1-solution_1.T7736_38'
+DBS='c:/users/r0721978/appdata/local/temp/46/basic_muffler_sim1-solution_1.T7736_38'
+SCR=yes
+SMEM=20.0X
+NEWDEL='c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/SSS'
+DEL='NXNDEF'
+AUTH='28000@set-s-me-lm3.luna.kuleuven.be'
+AUTHQUE=0
+MSGCAT='c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/analysis.msg'
+MSGDEST='f06'
+PROG=bundle
+NEWS='c:/program files/siemens/nx1953/nxnastran/scnas/nast/news.txt'
+UMATLIB='libnxumat.dll'
+UCRPLIB='libucreep.dll'
+USOLLIB='libusol.dll'
+--------------------------------------------------------------------------------------
+NXN_ISHELLPATH=C:\Program Files\Siemens\NX1953\nxnastran\bin
+NXN_JIDPATH=
+PATH=c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl;c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/sysnoise;c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/softwareanalytics;c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/samcef;c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/impi/bin;c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/monitor;C:\Program Files\Java\jre1.8.0_241\bin;C:\Program Files\Siemens\NX1953\nxbin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Simcenter\2020.1\Amesim;C:\Program Files\Simcenter\2020.1\Amesim\win64;C:\Program Files\Simcenter\2020.1\Amesim\win32;C:\Program Files\Simcenter\2020.1\Amesim\sys\mingw32\bin;C:\Program Files\Simcenter\2020.1\Amesim\sys\python\win64;C:\Program Files\Simcenter\2020.1\System Architect\win64;C:\MSC.Software\Patran_x64\20190\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Git\cmd;C:\Program Files (x86)\PuTTY\;C:\Program Files\TortoiseGit\bin;C:\Program Files\MATLAB\R2020a\runtime\win64;C:\Program Files\MATLAB\R2020a\bin;C:\Program Files\Siemens\NX1953\CAPITALINTEGRATION\capitalnxremote\;C:\Program Files (x86)\Citrix\System32\;C:\Program Files\Citrix\Virtual Desktop Agent\;C:\Users\r0721978\AppData\Local\Microsoft\WindowsApps;
+Command Line: basic_muffler_sim1-solution_1.dat prog=bundle old=no scratch=yes sys442=2
+Current Dir: \\stud-home.icts.kuleuven.be\r0721978\Documents\assignement_noise
+Executable:  c:/program files/siemens/nx1953/nxnastran/scnas/em64tntl/analysis.exe
+NXN_MSG:     stderr
+FPE:         no
+--------------------------------------------------------------------------------------
+Current resource limits:
+ Physical memory:                    57335 MB
+ Physical memory available:          48979 MB
+ Paging file size:                   65527 MB
+ Paging file size available:         56858 MB
+ Virtual memory:                 134217727 MB
+ Virtual memory available:       134217656 MB
+--------------------------------------------------------------------------------------
+System configuration:
+ Hostname:         SET-S-ME-VCL102.luna.kuleuven.be
+ Architecture:     em64tnt
+ Platform:         Intel64 Family 6 Model 63 Stepping 2 Windows Server 2016  
+ Model:            Intel(R) Xeon(R) CPU E5-2695 v3 @ 2.30GHz
+ Clock freq.:      2300 MHz
+ Number of CPUs:   12
+ Executable:       standard
+ Raw model ID:     8666
+ Config number:    8666
+ Physical memory:  57335 MB
+ Virtual memory:   65527 MB
+ Numeric format:   64-bit little-endian IEEE.
+ Bytes per word:   8
+ Disk block size:  512 bytes (64 words)
+ Remote shell cmd: Remote capabilities not available.
+--------------------------------------------------------------------------------------
+Simcenter Nastran started  Sat May 15 11:03:38 RDT 2021
+ 11:03:38  Beginning Analysis
+
+ 11:03:38  Simcenter NASTRAN Authorization Information - System Attributes
+ 11:03:38  --------------------------------------------------------
+ 11:03:38  Model: Intel(R) Xeon(R) CPU E5-2695 v3
+ 11:03:38  Machine: Intel64 Family 6 Model 63 Steppi
+ 11:03:38  OS: Windows Server 2016
+ 11:03:38  Version:
+ 11:03:38  License File(s): 28000@set-s-me-lm3.luna.kuleuven.be
+
+
+ 11:03:38  Simcenter NASTRAN Licensing Information
+ 11:03:38  --------------------------------------
+ 11:03:38  Sold To ID:            1358012 - KATHOLIEKE UNIVERSITE
+ 11:03:38  Webkey Access Code:    6WL69YNCXG
+ 11:03:38  License File Issuer:   SIEMENS
+
+
+ 11:03:38  Simcenter NASTRAN Authorization Information - Checkout Successful
+ 11:03:38  -----------------------------------------------------------------
+ 11:03:38  License for module Simcenter Nastran Basic - NX Desktop (Bundle)  checked out successfully
+
+ 11:03:38  Loading Shared Library C:\Program Files\Siemens\NX1953\nxcae_extras\tmg\exe\mayamoncomm.dll
+
+Starting viewer with UGII_MONITOR_DIR set to 'C:\Program Files\Siemens\NX1953\nxcae_extras\tmg\exe'
+Starting monitor viewer at C:\Program Files\Siemens\NX1953\nxcae_extras\tmg\exe/xcsmon_viewer.exe
+
+ 11:03:39  Simcenter NASTRAN Authorization Information - Checkout Successful
+ 11:03:39  -----------------------------------------------------------------
+ 11:03:39  License for module Simcenter Nastran Dynamic Response - NX Desktop (Bundle)  checked out successfully
+
+ 11:03:39  Analysis started.
+ 11:03:39  Geometry access/verification to CAD part initiated (if needed).
+ 11:03:39  Geometry access/verification to CAD part successfully completed (if needed).
+      Time -- Delta:  0:00:00 (      0.00)  Total:  0:00:01 (      1.19)
+ Sysnoise API Build Date : Oct 26 2020 16:52:09
+Temporary Directory: c:/users/r0721978/appdata/local/temp/46
+
+ 11:03:39  Simcenter NASTRAN Authorization Information - Checkout Successful
+ 11:03:39  -----------------------------------------------------------------
+ 11:03:39  License for module Simcenter Nastran Advanced Acoustics - NX Desktop (Bundle)  checked out successfully
+
+ 11:03:39  Finite element model generation started.
+ 11:03:39  Finite element model generated 756 degrees of freedom.
+ 11:03:39  Finite element model generation successfully completed.
+ 11:03:39  Application of Loads and Boundary Conditions to the finite element model started.
+ 11:03:39  Application of Loads and Boundary Conditions to the finite element model successfully completed.
+ 11:03:39  Solution of the system equations for frequency response started.
+ 11:03:51  Solution of the system equations for frequency response successfully completed.
+ 11:03:51  Frequency response analysis completed.
+ 11:03:56  NSEXIT: EXIT(0)
+ 11:03:56  Analysis complete  0
+Real:       18.758 seconds ( 0:00:18.758)
+User:        9.593 seconds ( 0:00:09.593)
+Sys:         2.234 seconds ( 0:00:02.234)
+Simcenter Nastran finished Sat May 15 11:03:57 RDT 2021

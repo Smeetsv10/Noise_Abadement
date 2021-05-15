@@ -1,0 +1,77 @@
+
+*** 11:34:50 *** 
+Starting Nastran Exporter
+
+*** 11:34:50 *** 
+Writing file 
+\\stud-home.icts.kuleuven.be\r0721978\Documents\assignement_noise\duct_sim1-solution_1.dat
+ 
+*** 11:34:50 *** 
+Writing SIMCENTER NASTRAN 2021.1 compatible deck
+
+*** 11:34:50 *** 
+Writing Nastran System section
+
+*** 11:34:50 *** 
+Writing File Management section
+
+*** 11:34:50 *** 
+Writing Executive Control section
+
+*** 11:34:50 *** 
+Writing Case Control section
+
+*** 11:34:50 *** 
+Writing Bulk Data section
+
+*** 11:34:50 *** 
+Writing Nodes
+
+*** 11:34:50 *** 
+INFORMATION : 138 nodes have been exported as fluid grid points
+
+*** 11:34:50 *** 
+INFORMATION : 1 nodes have been exported as microphone grid points
+
+*** 11:34:50 *** 
+Writing Elements
+
+*** 11:34:50 *** 
+Writing Physical Properties
+
+*** 11:34:50 *** 
+Writing Materials
+
+*** 11:34:50 *** 
+Writing Degree-of-Freedom Sets
+
+*** 11:34:50 *** 
+Writing Loads and Constraints
+
+*** 11:34:50 *** 
+Writing Coordinate Systems
+
+*** 11:34:50 *** 
+Validating Solution Setup
+
+*** 11:34:50 *** 
+Summary of Bulk Data cards written
+
++----------+----------+
+|   NAME   |  NUMBER  |
++----------+----------+
+| ACPNVEL  | 1        |
+| AMLREG   | 1        |
+| BSURFS   | 2        |
+| CTETRA   | 355      |
+| FREQ1    | 1        |
+| GRID     | 139      |
+| MAT10C   | 1        |
+| MICPNT   | 1        |
+| PARAM    | 7        |
+| PSOLID   | 1        |
++----------+----------+
+
+*** 11:34:50 *** 
+Nastran Deck Successfully Written
+
