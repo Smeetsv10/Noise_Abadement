@@ -13,13 +13,13 @@ for i = 1:length(cte.f)
     %% Parameters
     f = cte.f(i);
     w = 2*pi*f;
-    lambda = cte.c/f;
-    k = w/cte.c;
+    lambda = cte.c/f
+    k = w/cte.c; % 2*pi/lambda
     
     %% Change in duct crosssection
     % Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
-    L = 0.210;
+    L = 0.213;
     s = 0.025;
     m = 0.010;
     d = 0.050;
