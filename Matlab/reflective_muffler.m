@@ -13,7 +13,7 @@ for i = 1:length(cte.f)
     %% Parameters
     f = cte.f(i);
     w = 2*pi*f;
-    lambda = cte.c/f
+    lambda = cte.c/f;
     k = w/cte.c; % 2*pi/lambda
     
     %% Change in duct crosssection
