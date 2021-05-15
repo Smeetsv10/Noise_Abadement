@@ -31,3 +31,5 @@ if figures
     figure(6),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion))
 end
+
+save 'version1_1.mat'
