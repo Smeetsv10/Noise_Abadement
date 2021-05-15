@@ -32,4 +32,4 @@ if figures
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion))
 end
 
-save 'version1_1.mat'
+%save 'version1_1.mat'
