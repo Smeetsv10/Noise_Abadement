@@ -2,8 +2,8 @@ function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
     % With expansion tube
-    mic.A = read_table(readtable('mic_5.csv','NumHeaderLines',1));
-    mic.B = read_table(readtable('mic_6.csv','NumHeaderLines',1));
+    mic.A = read_table(readtable('mic_9.csv','NumHeaderLines',1));
+    mic.B = read_table(readtable('mic_10.csv','NumHeaderLines',1));
     mic.C = read_table(readtable('mic_7.csv','NumHeaderLines',1));
     mic.D = read_table(readtable('mic_8.csv','NumHeaderLines',1));
     % Without expansion tube
