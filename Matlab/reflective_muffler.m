@@ -35,7 +35,7 @@ for i = 1:length(cte.f)
     
     %IL.expansion(i) = 20*log( abs(cos(k*L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*d))*sin(k*L)) );
     IL.expansion_NX(i) = 20*log(abs(mic_C_without.p(i)/mic_C.p(i)));
-    TL.expansion(i) = 10*log(1+0.25*(N-(1/N))^2*sin(k*L)^2); % maybe replace 1 by cos(k*L)^2
+    TL.expansion(i) = 10*log(cos(k*L)^2+0.25*(N-(1/N))^2*sin(k*L)^2); % maybe replace 1 by cos(k*L)^2
     TL.expansion_NX(i) = 10*log(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
         
     %% Side branch resonators
@@ -82,7 +82,7 @@ for i = 1:length(cte.f)
     %Q = (cte.rho_air*cte.c/R_s)*sqrt();
 
     IL.lambda4(i) = 0;
-    TL.lambda4(i) = -20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
+    TL.lambda4(i) = 10*log((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
 
 end
 
