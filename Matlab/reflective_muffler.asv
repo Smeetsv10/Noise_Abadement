@@ -20,11 +20,11 @@ for i = 1:length(cte.f)
     % Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
     L = 0.213;
-    m1 = 0.122;
-    s1 = 0.010;
-    m2 = 0.035;
-    s2 = 0.010;
-    d = 0.050;
+    m1 = 0.010;
+    s1 = 0.025;
+    m2 = 0.97;
+    s2 = 0.025;
+    d = 0.137;
     
     A1 = (mic_A.p(i)*exp(1i*k*s1)-mic_B.p(i))*exp(-1i*k*(m1+s1))/(exp(1i*k*s1)-exp(-1i*k*s1)); % amp inlet
     A3 = (mic_C.p(i)*exp(1i*k*s2)-mic_D.p(i))*exp(-1i*k*(m2-d))/(exp(1i*k*s2)-exp(-1i*k*s2)); % amp outlet
@@ -33,7 +33,7 @@ for i = 1:length(cte.f)
     S_2 = pi*(D_new/2)^2; % [m^2]
     N = S_1/S_2;
     
-    %IL.expansion(i) = 20*log( abs(cos(k*L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*d))*sin(k*L)) );
+    IL.expansion(i) = 20*log( abs(cos(k*)) );
     IL.expansion_NX(i) = 20*log(abs(mic_C_without.p(i)/mic_C.p(i)));
     TL.expansion(i) = 10*log(1+0.25*(N-(1/N))^2*sin(k*L)^2); % maybe replace 1 by cos(k*L)^2
     TL.expansion_NX(i) = 10*log(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))

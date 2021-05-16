@@ -1,5 +1,4 @@
 clear
-close
 
 %% Initialize parameters
 cte = set_cte();
@@ -15,7 +14,7 @@ figures = false;
 
 %% Post Processing
 if figures
-    
+    close
     % Reflective muffler
     figure(4),
     subplot(3,1,1), hold on
@@ -39,7 +38,5 @@ if figures
     
     
 end
-
-%muffler_design(cte)
 
 %save 'version1_2.mat'
