@@ -34,7 +34,7 @@ if figures
     legend("Helmholtz resonator 1","Helmholtz resonator 2", "expansion chamber", "lambda/4 ")
         
     figure(5),
-    TL.total = TL.expansion + TL.helmholtz1 + TL.lambda4;
+    TL.total = TL.expansion + TL.lambda4;
     plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
     
     figure(6),

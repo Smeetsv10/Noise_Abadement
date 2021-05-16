@@ -2,10 +2,10 @@ function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
     % With expansion tube
-    mic.A = read_table(readtable('mic_5.csv','NumHeaderLines',1));
-    mic.B = read_table(readtable('mic_6.csv','NumHeaderLines',1));
-    mic.C = read_table(readtable('mic_7.csv','NumHeaderLines',1));
-    mic.D = read_table(readtable('mic_8.csv','NumHeaderLines',1));
+    mic.A = read_table(readtable('mic_9.csv','NumHeaderLines',1));
+    mic.B = read_table(readtable('mic_10.csv','NumHeaderLines',1));
+    mic.C = read_table(readtable('mic_11.csv','NumHeaderLines',1));
+    mic.D = read_table(readtable('mic_12.csv','NumHeaderLines',1));
     % Without expansion tube
     mic.C_without = read_table(readtable('mic_C_without.csv','NumHeaderLines',1));
     
@@ -20,11 +20,11 @@ for i = 1:length(cte.f)
     % Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
     cte.L = 0.213;
-    cte.m1 = 0.122;
+    cte.m1 = 0.0785;
     cte.s1 = 0.010;
-    cte.m2 = 0.035;
+    cte.m2 = 0.0785;
     cte.s2 = 0.010;
-    cte.d = 0.050;
+    cte.d = 0.0935;
     
     A1 = (mic.A.p(i)*exp(1i*k*cte.s1)-mic.B.p(i))*exp(-1i*k*(cte.m1+cte.s1))/(exp(1i*k*cte.s1)-exp(-1i*k*cte.s1)); % amp inlet
     A3 = (mic.C.p(i)*exp(1i*k*cte.s2)-mic.D.p(i))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2)); % amp outlet
@@ -77,7 +77,7 @@ for i = 1:length(cte.f)
     % Quarter-wavelength resonator:
     % 820Hz: 0.104mm
     % 1640Hz: 0.052mm
-    H = 0.053; % lambda/4 [m]
+    H = 0.050; % lambda/4 [m]
     D_neck = 0.5*cte.D;
     
     S_s = pi*(D_neck/2)^2;
