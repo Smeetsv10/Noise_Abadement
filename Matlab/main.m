@@ -3,7 +3,7 @@ close
 
 %% Initialize parameters
 cte = set_cte();
-figures = false;
+figures = true;
 
 %% Calculations
 % Reflective Type muffler

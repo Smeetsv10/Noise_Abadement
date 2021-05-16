@@ -2,10 +2,10 @@ function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
     % With expansion tube
-    mic_A = read_table(readtable('mic_9.csv','NumHeaderLines',1));
-    mic_B = read_table(readtable('mic_10.csv','NumHeaderLines',1));
-    mic_C = read_table(readtable('mic_11.csv','NumHeaderLines',1));
-    mic_D = read_table(readtable('mic_12.csv','NumHeaderLines',1));
+    mic_A = read_table(readtable('mic_5.csv','NumHeaderLines',1));
+    mic_B = read_table(readtable('mic_6.csv','NumHeaderLines',1));
+    mic_C = read_table(readtable('mic_7.csv','NumHeaderLines',1));
+    mic_D = read_table(readtable('mic_8.csv','NumHeaderLines',1));
     % Without expansion tube
     mic_C_without = read_table(readtable('mic_C_without.csv','NumHeaderLines',1));
     
@@ -75,7 +75,9 @@ for i = 1:length(cte.f)
     TL.helmholtz2(i) = 20*log(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i)));
     
     % Quarter-wavelength resonator:
-    H = 0.13; % lambda/4 [m]
+    % 820Hz: 0.104mm
+    % 1640Hz: 0.052mm
+    H = 0.104; % lambda/4 [m]
     Z_s(i) = -1i*cte.rho_air*cte.c*cot(k*H);  % impedance lambda/4 resonator
     %Q = (cte.rho_air*cte.c/R_s)*sqrt();
 
