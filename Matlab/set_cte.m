@@ -7,7 +7,7 @@ cte.mu_air = 1.8*10^-5; % viscosity [kg/m*s]
 cte.gamma = 1.4;
 
 % Simcenter parameters [m, Hz]
-cte.L = 0.300; % length
+cte.L = 0.213; % length
 cte.H = 0.200; % height
 cte.W = 0.200; % width
 cte.D = 0.040; % diameter duct
