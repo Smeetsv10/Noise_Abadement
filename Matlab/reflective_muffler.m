@@ -34,7 +34,7 @@ for i = 1:length(cte.f)
     N = S_1/S_2;
     
     %IL.expansion(i) = 20*log( abs(cos(k*L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*d))*sin(k*L)) );
-%    IL.expansion_NX(i) = 20*log(abs(mic.C_without.p(i)/mic.C.p(i)));
+    %IL.expansion_NX(i) = 20*log(abs(mic.C_without.p(i)/mic.C.p(i)));
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N-(1/N))^2*sin(k*cte.L)^2); % maybe replace 1 by cos(k*L)^2
     TL.expansion_NX(i) = 10*log10(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
         
@@ -77,7 +77,7 @@ for i = 1:length(cte.f)
     % Quarter-wavelength resonator:
     % 820Hz: 0.104mm
     % 1640Hz: 0.052mm
-    H = 0.050; % lambda/4 [m]
+    H = 0.052; % lambda/4 [m]
     D_neck = 0.5*cte.D;
     
     S_s = pi*(D_neck/2)^2;
