@@ -34,8 +34,8 @@ for i = 1:length(cte.f)
     N = S_1/S_2;
     
 
-    R = 0; % reflection coefficient at the end of the duct
-    IL.expansion(i) = 20*log10(abs( cos(k*cte.L) + 1i*0.5*(((1/N)+N)+R*((1/N)-N)*exp(-1i*2*k*cte.d))*sin(k*cte.L) )); % same formula as TL for R=0 ???
+    R = 1 + i; % reflection coefficient at the end of the duct
+    IL.expansion(i) = 20*log10(abs(cos(k*cte.L) + 1i*0.5*(((1/N)+N)+R*((1/N)-N)*exp(-1i*2*k*cte.d))*sin(k*cte.L) )); % same formula as TL for R=0 ???
     IL.expansion_NX(i) = 20*log10(abs(mic.C_without.p(i)/mic.C.p(i)));
     
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N+(1/N))^2*sin(k*cte.L)^2); % cos and + or 1 and - !

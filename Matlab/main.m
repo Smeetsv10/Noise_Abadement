@@ -38,11 +38,13 @@ if figures
     plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
     
     figure(6),
-    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion))
+    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion)), xlabel("f"), ylabel("TL [dB]")
+    legend('TL-Calculated', 'TL-Simulated')
     
     figure(7),
-    plot(cte.f, IL.expansion_NX)
-    
+    plot(cte.f, IL.expansion,cte.f, IL.expansion_NX), xlabel("f"), ylabel("IL [dB]")
+    legend('IL-Calculated', 'IL-Simulated')
+        
 end
 
 %save 'version1_2.mat'
