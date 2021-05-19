@@ -33,8 +33,9 @@ for i = 1:length(cte.f)
     S_2 = pi*(D_new/2)^2; % [m^2]
     N = S_1/S_2;
     
-    %IL.expansion(i) = 20*log( abs(cos(k*L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*d))*sin(k*L)) );
-    IL.expansion_NX(i) = 20*log(abs(mic.C_without.p(i)/mic.C.p(i)));
+    %IL.expansion(i) = 20*log( abs(cos(k*cte.L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*cte.d))*sin(k*cte.L)) );
+    IL.expansion(i) = 10*log10((1-w/));
+    IL.expansion_NX(i) = 20*log10(abs(mic.C_without.p(i)/mic.C.p(i)));
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N-(1/N))^2*sin(k*cte.L)^2); % maybe replace 1 by cos(k*L)^2
     TL.expansion_NX(i) = 10*log10(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
         
