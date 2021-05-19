@@ -14,22 +14,22 @@ HR_2 = 88;
 
 
 figure(1),title("Muffler design"), hold on
-plot(inlet,1000*[-cte.D/2 -cte.D/2],'b-'),
-plot(inlet,1000*[cte.D/2 cte.D/2],'b-'),
-plot([inlet(1) inlet(1)],1000*[-cte.D/2 cte.D/2],'b-'),
+plot(inlet,1000*[-cte.D/2 -cte.D/2],'b-', 'LineWidth', 2),
+plot(inlet,1000*[cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
+plot([inlet(1) inlet(1)],1000*[-cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
 
-plot([ExpCh(1) ExpCh(1)],1000*[cte.D/2 cte.D*5/2],'b-'),
-plot([ExpCh(1) ExpCh(1)],1000*[-cte.D/2 -cte.D*5/2],'b-'),
-plot(ExpCh,1000*[-cte.D*5/2 -cte.D*5/2],'b-'),
-plot(ExpCh,1000*[cte.D*5/2 cte.D*5/2],'b-'),
-plot([ExpCh(2) ExpCh(2)],1000*[cte.D/2 cte.D*5/2],'b-'),
-plot([ExpCh(2) ExpCh(2)],1000*[-cte.D/2 -cte.D*5/2],'b-'),
+plot([ExpCh(1) ExpCh(1)],1000*[cte.D/2 cte.D*5/2],'b-', 'LineWidth', 2),
+plot([ExpCh(1) ExpCh(1)],1000*[-cte.D/2 -cte.D*5/2],'b-', 'LineWidth', 2),
+plot(ExpCh,1000*[-cte.D*5/2 -cte.D*5/2],'b-', 'LineWidth', 2),
+plot(ExpCh,1000*[cte.D*5/2 cte.D*5/2],'b-', 'LineWidth', 2),
+plot([ExpCh(2) ExpCh(2)],1000*[cte.D/2 cte.D*5/2],'b-', 'LineWidth', 2),
+plot([ExpCh(2) ExpCh(2)],1000*[-cte.D/2 -cte.D*5/2],'b-', 'LineWidth', 2),
 
-plot(outlet,1000*[-cte.D/2 -cte.D/2],'b-'),
-plot(outlet,1000*[cte.D/2 cte.D/2],'b-'),
-plot([outlet(2) outlet(2)],1000*[-cte.D/2 cte.D/2],'b-'),
+plot(outlet,1000*[-cte.D/2 -cte.D/2],'b-', 'LineWidth', 2),
+plot(outlet,1000*[cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
+plot([outlet(2) outlet(2)],1000*[-cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
 
-plot([mic_A mic_B mic_C mic_D],[0 0 0 0],'ro'),
+plot([mic_A mic_B mic_C mic_D],[0 0 0 0],'ro', 'LineWidth', 2),
 
 axis([-205 205 -205 205])
 

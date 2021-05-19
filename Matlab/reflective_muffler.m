@@ -7,7 +7,7 @@ function [IL,TL] = reflective_muffler(cte)
     mic.C = read_table(readtable('mic3.csv','NumHeaderLines',1));
     mic.D = read_table(readtable('mic4.csv','NumHeaderLines',1));
     % Without expansion tube
-    mic.C_without = read_table(readtable('mic3n','NumHeaderLines',1));
+    mic.without = read_table(readtable('mic4n','NumHeaderLines',1));
     
 for i = 1:length(cte.f)
     %% Parameters
@@ -32,11 +32,10 @@ for i = 1:length(cte.f)
     S_1 = pi*(cte.D/2)^2; % [m^2]
     S_2 = pi*(D_new/2)^2; % [m^2]
     N = S_1/S_2;
-    
 
-    R = 0; % reflection coefficient at the end of the duct
+    R = 1; % reflection coefficient at the end of the duct
     IL.expansion(i) = 20*log10(abs( cos(k*cte.L) + 1i*0.5*(((1/N)+N)+R*((1/N)-N)*exp(-1i*2*k*cte.d))*sin(k*cte.L) )); % same formula as TL for R=0 ???
-    IL.expansion_NX(i) = 20*log10(abs(mic.C_without.p(i)/mic.C.p(i)));
+    IL.expansion_NX(i) = 20*log10(abs(mic.without.p(i)/mic.D.p(i)));
     
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N+(1/N))^2*sin(k*cte.L)^2); % cos and + or 1 and - !
     TL.expansion_NX(i) = 10*log10(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
