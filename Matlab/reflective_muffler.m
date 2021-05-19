@@ -2,12 +2,12 @@ function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
     % With expansion tube
-    mic.A = read_table(readtable('mic1e.csv','NumHeaderLines',1));
-    mic.B = read_table(readtable('mic2e.csv','NumHeaderLines',1));
-    mic.C = read_table(readtable('mic3e.csv','NumHeaderLines',1));
-    mic.D = read_table(readtable('mic4e.csv','NumHeaderLines',1));
+    mic.A = read_table(readtable('mic1o.csv','NumHeaderLines',1));
+    mic.B = read_table(readtable('mic2o.csv','NumHeaderLines',1));
+    mic.C = read_table(readtable('mic3o.csv','NumHeaderLines',1));
+    mic.D = read_table(readtable('mic4o.csv','NumHeaderLines',1));
     % Without expansion tube
-    %mic.C_without = read_table(readtable('mic_C_without.csv','NumHeaderLines',1));
+    mic.C_without = read_table(readtable('mic3n','NumHeaderLines',1));
     
 for i = 1:length(cte.f)
     %% Parameters
@@ -34,13 +34,13 @@ for i = 1:length(cte.f)
     N = S_1/S_2;
     
     %IL.expansion(i) = 20*log( abs(cos(k*L) + 1i*0.5*((1/N)+N+R*((1/N)-N)*exp(-1i*2*k*d))*sin(k*L)) );
-    %IL.expansion_NX(i) = 20*log(abs(mic.C_without.p(i)/mic.C.p(i)));
+    IL.expansion_NX(i) = 20*log(abs(mic.C_without.p(i)/mic.C.p(i)));
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N-(1/N))^2*sin(k*cte.L)^2); % maybe replace 1 by cos(k*L)^2
     TL.expansion_NX(i) = 10*log10(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
         
     %% Side branch resonators
     % Helmholtz resonator:
-    % resonator 1:
+    % resonator 1 (f = 1640 Hz):
     l = 0.010; % m
     D_neck = cte.D*0.3;
     h = 0.070; % max 70
@@ -57,7 +57,7 @@ for i = 1:length(cte.f)
     IL.helmholtz1(i) = 0;
     TL.helmholtz1(i) = 20*log10(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i)));
     
-    % resonator 2:
+    % resonator 2 (f = 820 Hz):
     l = 0.010; % m
     D_neck = cte.D*0.3;
     h = 0.070; % max 70

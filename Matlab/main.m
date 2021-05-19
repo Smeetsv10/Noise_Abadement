@@ -40,6 +40,8 @@ if figures
     figure(6),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion))
     
+    figure(7),
+    plot(cte.f, IL.expansion_NX)
     
 end
 
