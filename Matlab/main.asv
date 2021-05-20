@@ -3,7 +3,8 @@ close
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, true];
+figures1 = false;
+figures2 = true;
 
 %% Calculations
 % Reflective Type muffler
@@ -15,7 +16,7 @@ figures = [false, false, true];
 
 
 %% Post Processing
-if figures(1)
+if figures1
     
     figure(4),
     subplot(4,1,1), hold on
@@ -37,7 +38,7 @@ if figures(1)
     plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
 end
 
-if figures(2)
+if figures2
     
     figure(6),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion)), xlabel("f"), ylabel("TL [dB]")
@@ -49,15 +50,15 @@ if figures(2)
         
 end
 
-if figures(3)
+if figures3
     
     figure(8),
-    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.inlet_outlet_NX), cte.f, abs(TL.partitioning_NX)), xlabel("f"), ylabel("TL [dB]")
-    legend('Expansion chamber', 'Inlet/outlet', 'Partitioning')
+    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion)), xlabel("f"), ylabel("TL [dB]")
+    legend('TL-Calculated', 'TL-Simulated')
     
-    figure(9),
-    plot(cte.f, IL.expansion_NX, cte.f, IL.inlet_outlet_NX, cte.f, IL.partitioning_NX), xlabel("f"), ylabel("IL [dB]")
-    legend('Expansion chamber', 'Inlet/outlet', 'Partitioning')
+    figure(7),
+    plot(cte.f, IL.expansion,cte.f, IL.expansion_NX), xlabel("f"), ylabel("IL [dB]")
+    legend('IL-Calculated', 'IL-Simulated')
         
 end
 

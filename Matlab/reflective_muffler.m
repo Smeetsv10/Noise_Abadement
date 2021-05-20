@@ -1,16 +1,7 @@
 function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
-    % With expansion tube
-    mic.A = read_table(readtable('mic1a.csv','NumHeaderLines',1));
-    mic.B = read_table(readtable('mic2a.csv','NumHeaderLines',1));
-    mic.C = read_table(readtable('mic3a.csv','NumHeaderLines',1));
-    mic.D = read_table(readtable('mic4a.csv','NumHeaderLines',1));
-    % Without expansion tube
-    mic.A_wo = read_table(readtable('mic1n','NumHeaderLines',1));
-    mic.B_wo = read_table(readtable('mic2n','NumHeaderLines',1));
-    mic.C_wo = read_table(readtable('mic3n','NumHeaderLines',1));
-    mic.D_wo = read_table(readtable('mic4n','NumHeaderLines',1));
+    mic = read_mics();
     
 for i = 1:length(cte.f)
     %% Parameters
@@ -18,10 +9,6 @@ for i = 1:length(cte.f)
     w = 2*pi*f;
     lambda = cte.c/f;
     k = w/cte.c; % 2*pi/lambda
-    
-    %% Change in duct crosssection
-    % Expansion chamber:
-    D_new = cte.D*5; % upper limit is factor 5, 0.200m
     cte.L = 0.213;
     cte.m1 = 0.0785;
     cte.s1 = 0.010;
@@ -29,6 +16,9 @@ for i = 1:length(cte.f)
     cte.s2 = 0.010;
     cte.d = 0.0935;
     
+    %% Expansion chamber:
+    D_new = cte.D*5; % upper limit is factor 5, 0.200m
+
     A1 = (mic.A.p(i)*exp(1i*mic.A.phase(i))*exp(1i*k*cte.s1)-mic.B.p(i)*exp(1i*mic.B.phase(i)))*exp(-1i*k*(cte.m1+cte.s1))/(exp(1i*k*cte.s1)-exp(-1i*k*cte.s1)); % amp inlet
     A3 = (mic.C.p(i)*exp(1i*mic.C.phase(i))*exp(1i*k*cte.s2)-mic.D.p(i)*exp(1i*mic.D.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2)); % amp outlet
     A3_wo = (mic.C_wo.p(i)*exp(1i*mic.C_wo.phase(i))*exp(1i*k*cte.s2)-mic.D_wo.p(i)*exp(1i*mic.D_wo.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2));
@@ -44,7 +34,22 @@ for i = 1:length(cte.f)
     
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N+(1/N))^2*sin(k*cte.L)^2); % cos and + or 1 and - !
     TL.expansion_NX(i) = 10*log10(abs(A1/A3)^2); %10*log(abs((mic_A.p(i)/mic_C.p(i))^2))
-        
+    
+    
+    %% Inlet/outlet extension
+    A1 = (mic.A_io.p(i)*exp(1i*mic.A_io.phase(i))*exp(1i*k*cte.s1)-mic.B_io.p(i)*exp(1i*mic.B_io.phase(i)))*exp(-1i*k*(cte.m1+cte.s1))/(exp(1i*k*cte.s1)-exp(-1i*k*cte.s1)); % amp inlet
+    A3 = (mic.C_io.p(i)*exp(1i*mic.C_io.phase(i))*exp(1i*k*cte.s2)-mic.D_io.p(i)*exp(1i*mic.D_io.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2)); % amp outlet
+    
+    IL.inlet_outlet_NX(i) = 20*log10(abs(A3_wo/A3));
+    TL.inlet_outlet_NX(i) = 10*log10(abs(A1/A3)^2);
+    
+    %% Partitioning expansion chamber
+    A1 = (mic.A_prt.p(i)*exp(1i*mic.A_prt.phase(i))*exp(1i*k*cte.s1)-mic.B_prt.p(i)*exp(1i*mic.B_prt.phase(i)))*exp(-1i*k*(cte.m1+cte.s1))/(exp(1i*k*cte.s1)-exp(-1i*k*cte.s1)); % amp inlet
+    A3 = (mic.C_prt.p(i)*exp(1i*mic.C_prt.phase(i))*exp(1i*k*cte.s2)-mic.D_prt.p(i)*exp(1i*mic.D_prt.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2)); % amp outlet
+    
+    IL.partitioning_NX(i) = 20*log10(abs(A3_wo/A3));
+    TL.partitioning_NX(i) = 10*log10(abs(A1/A3)^2);
+    
     %% Side branch resonators
     % Helmholtz resonator:
     % resonator 1 (f = 1640 Hz):
