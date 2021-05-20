@@ -30,16 +30,10 @@ for i = 1:length(cte.f)
     cte.d = 0.0935;
     
     A1 = (mic.A.p(i)*exp(1i*mic.A.phase(i))*exp(1i*k*cte.s1)-mic.B.p(i)*exp(1i*mic.B.phase(i)))*exp(-1i*k*(cte.m1+cte.s1))/(exp(1i*k*cte.s1)-exp(-1i*k*cte.s1)); % amp inlet
-    
     A3 = (mic.C.p(i)*exp(1i*mic.C.phase(i))*exp(1i*k*cte.s2)-mic.D.p(i)*exp(1i*mic.D.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2)); % amp outlet
-<<<<<<< Updated upstream
     A3_wo = (mic.C_wo.p(i)*exp(1i*mic.C_wo.phase(i))*exp(1i*k*cte.s2)-mic.D_wo.p(i)*exp(1i*mic.D_wo.phase(i)))*exp(-1i*k*(cte.m2-cte.d))/(exp(1i*k*cte.s2)-exp(-1i*k*cte.s2));
-
-=======
-    
     A4 = (mic.C.p(i)*exp(1i*mic.C.phase(i))-A3*exp(1i*k*-(cte.d-cte.m2))) / (exp(-1i*k*-(cte.d-cte.m2))); % zou 0 moeten zijn 
     
->>>>>>> Stashed changes
     S_1 = pi*(cte.D/2)^2; % [m^2]
     S_2 = pi*(D_new/2)^2; % [m^2]
     N = S_1/S_2;
