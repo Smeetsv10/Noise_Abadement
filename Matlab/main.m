@@ -3,7 +3,8 @@ close
 
 %% Initialize parameters
 cte = set_cte();
-figures = true;
+figures1 = false;
+figures2 = true;
 
 %% Calculations
 % Reflective Type muffler
@@ -15,9 +16,8 @@ figures = true;
 
 
 %% Post Processing
-if figures
+if figures1
     
-    % Reflective muffler
     figure(4),
     subplot(4,1,1), hold on
     plot(cte.f, abs(TL.helmholtz1)), xlabel("f"), ylabel("TR - Helmholtz resonator [dB]")
@@ -33,9 +33,12 @@ if figures
     plot(cte.f, abs(TL.lambda4)), xlabel("f"), ylabel("TR [dB]")
     legend("Helmholtz resonator 1","Helmholtz resonator 2", "expansion chamber", "lambda/4 ")
         
-%     figure(5),
-%     TL.total = TL.expansion + TL.lambda4;
-%     plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
+    figure(5),
+    TL.total = TL.expansion + TL.lambda4;
+    plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
+end
+
+if figures2
     
     figure(6),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion)), xlabel("f"), ylabel("TL [dB]")
