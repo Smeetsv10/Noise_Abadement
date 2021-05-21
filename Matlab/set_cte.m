@@ -21,9 +21,10 @@ cte.s2 = 0.010;
 cte.d = 0.0935;
 
 % External parameters
-cte.steel_price = 40; % eur/kg
-cte.titanium_price = 80; % eur/kg
-
+cte.price_steel = 2; % eur/kg
+cte.rho_steel = 8050; %kg/m^3
+cte.price_titanium = 45; % eur/kg
+cte.rho_titanium = 4510; % eur/kg
 
 end
 

@@ -1,15 +1,18 @@
-function [IL,TL, power] = reflective_muffler(cte)
-%% Reactive type Mufflers
+function [IL,TL, power] = calculations_muffler(cte)
     %% Import data
     [mic, power] = read_mics();
     
 for i = 1:length(cte.f)
-    %% Parameters
+   %% Parameters
     f = cte.f(i);
     w = 2*pi*f;
     lambda = cte.c/f;
     k = w/cte.c; % 2*pi/lambda
     
+%% 
+% Reflective type Mufflers   
+% _________________________
+
     %% Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
 
@@ -39,7 +42,27 @@ for i = 1:length(cte.f)
  
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
 
-    power.steel05(i) = 10*log10( sqrt(power.expansion.real(i)^2+power.expansion.imag(i)^2) / power.normal.abs(i));
+    power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / power.normal.abs(i));
+    power.steel15.dB(i) = 10*log10( sqrt(power.steel15.real(i)^2+power.steel15.imag(i)^2) / power.normal.abs(i));
+    power.alum15.dB(i) = 10*log10( sqrt(power.alum15.real(i)^2+power.alum15.imag(i)^2) / power.normal.abs(i));
+    
+    t(i) = (0.5 + 0.0050*i)*10^-3; %0.5..1.5
+    Vol_mat(i) = 2*(pi/4)*(D_new^2-cte.D^2)*t(i) + 2*pi*D_new*(cte.L-2*t(i))*t(i);
+    tot_steel_price(i) = cte.price_steel*cte.rho_steel*Vol_mat(i);
+    tot_titanium_price(i) = cte.price_titanium*cte.rho_titanium*Vol_mat(i);
+%% 
+% Absorption type Mufflers   
+% _________________________
+
+    %% Absorbing material
+    %[IL.ab_NX(i),TL.ab_NX(i)] = calc_IL_TL(mic.ab, cte, i);
+
+    %% Perforated ducts
+
+
+%% 
+% Rest
+% _________________________
 
     %% Side branch resonators
     % Helmholtz resonator:
@@ -91,6 +114,10 @@ for i = 1:length(cte.f)
     TL.lambda4(i) = 10*log10((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
     
 end
+
+%     figure(12),
+%     plot(t*1000, tot_steel_price, t*1000, tot_titanium_price), xlabel("thickness [mm]"), ylabel("Price [eur]")
+%     legend('Steel', 'Titanium')
 
 end
 

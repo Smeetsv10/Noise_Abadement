@@ -13,16 +13,16 @@ mic.expCh.C = read_table(readtable('mic3.csv','NumHeaderLines',1));
 mic.expCh.D = read_table(readtable('mic4.csv','NumHeaderLines',1));
 
 % Inlet/outlet extension
-mic.io.A = read_table(readtable('mic1a.csv','NumHeaderLines',1));
-mic.io.B = read_table(readtable('mic2a.csv','NumHeaderLines',1));
-mic.io.C = read_table(readtable('mic3a.csv','NumHeaderLines',1));
-mic.io.D = read_table(readtable('mic4a.csv','NumHeaderLines',1));
+mic.io.A = read_table(readtable('mic1e1.csv','NumHeaderLines',1));
+mic.io.B = read_table(readtable('mic2e1.csv','NumHeaderLines',1));
+mic.io.C = read_table(readtable('mic3e1.csv','NumHeaderLines',1));
+mic.io.D = read_table(readtable('mic4e1.csv','NumHeaderLines',1));
 
 % Partitioning the expansion chamber
-mic.prt.A = read_table(readtable('mic1e1.csv','NumHeaderLines',1));
-mic.prt.B = read_table(readtable('mic2e1.csv','NumHeaderLines',1));
-mic.prt.C = read_table(readtable('mic3e1.csv','NumHeaderLines',1));
-mic.prt.D = read_table(readtable('mic4e1.csv','NumHeaderLines',1));
+mic.prt.A = read_table(readtable('mic1a.csv','NumHeaderLines',1));
+mic.prt.B = read_table(readtable('mic2a.csv','NumHeaderLines',1));
+mic.prt.C = read_table(readtable('mic3a.csv','NumHeaderLines',1));
+mic.prt.D = read_table(readtable('mic4a.csv','NumHeaderLines',1));
 
 % Vibro acoustics
 mic.vibro.A = read_table(readtable('mic1v.csv','NumHeaderLines',1));
