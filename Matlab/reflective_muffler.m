@@ -98,13 +98,15 @@ for i = 1:length(cte.f)
 
     IL.lambda4(i) = 0;
     TL.lambda4(i) = 10*log10((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
-
+    
+    %% Vibro acoustics
+    vibro.power(i) = sqrt(vibro.data(i,2)^2+vibro.data(i,3)^2);
 end
 
 muffler_design(cte)
 
 figure(2),
-plot(cte.f, vibro(:,2) ), xlabel("f"), ylabel("Transmitted power [dB]")
+plot(cte.f, vibro.power), xlabel("f"), ylabel("Transmitted power [W]")
 
 
 end

@@ -25,6 +25,6 @@ mic.C_prt = read_table(readtable('mic3e1.csv','NumHeaderLines',1));
 mic.D_prt = read_table(readtable('mic4e1.csv','NumHeaderLines',1));
 
 % Vibro acoustics
-vibro = importdata('vibro_sim-solution.csv').data;
+vibro.data = importdata('vibro_sim-solution.csv').data;
 end
 
