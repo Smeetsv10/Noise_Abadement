@@ -76,7 +76,9 @@ if figures(4)
     plot(cte.f, IL.expansion_NX, cte.f, IL.vibro_NX), xlabel("f"), ylabel("IL [dB]")
     legend('Expansion chamber', 'Vibro Acoustics') 
 
-
+    figure(10),
+    plot(cte.f, power.expansion.dB, cte.f, power.steel05.dB, cte.f, power.steel15.dB, cte.f, power.alum15.dB), xlabel("f"), ylabel("Radiated power [dB]")
+    legend('Normal', 'Steel - 0.5mm', 'Steel - 1.5mm', 'Aluminium - 1.5mm')    
 end
 
 muffler_design(cte)
