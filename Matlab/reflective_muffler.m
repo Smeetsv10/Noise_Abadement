@@ -1,7 +1,7 @@
-function [IL,TL] = reflective_muffler(cte)
+function [IL,TL, power] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
-    [mic, vibro] = read_mics();
+    [mic, power] = read_mics();
     
 for i = 1:length(cte.f)
     %% Parameters
@@ -100,13 +100,15 @@ for i = 1:length(cte.f)
     TL.lambda4(i) = 10*log10((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
     
     %% Vibro acoustics
-    vibro.power(i) = sqrt(vibro.data(i,2)^2+vibro.data(i,3)^2);
+    power.expansion.abs(i) = sqrt(power.expansion.real(i)^2+power.expansion.imag(i)^2);
+    power.normal.abs(i) = sqrt(power.normal.real(i)^2+power.normal.imag(i)^2);
+    power.expansion.dB(i) = 10*log10(power.expansion.abs(i) / power.normal.abs(i));
+    
+
+    
 end
 
 muffler_design(cte)
-
-figure(2),
-plot(cte.f, vibro.power), xlabel("f"), ylabel("Transmitted power [W]")
 
 
 end

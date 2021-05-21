@@ -3,11 +3,11 @@ close
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, true];
+figures = [false, false, true, true];
 
 %% Calculations
 % Reflective Type muffler
-[IL,TL]= reflective_muffler(cte);
+[IL,TL, power]= reflective_muffler(cte);
 
 % Absorption type muffler
 
@@ -47,8 +47,7 @@ if figures(2)
     
     figure(7),
     plot(cte.f, IL.expansion,cte.f, IL.expansion_NX), xlabel("f"), ylabel("IL [dB]")
-    legend('IL-Calculated', 'IL-Simulated')
-        
+    legend('IL-Calculated', 'IL-Simulated')  
 end
 
 % Optimisation
@@ -60,8 +59,17 @@ if figures(3)
     
     figure(9),
     plot(cte.f, IL.expansion_NX, cte.f, IL.inlet_outlet_NX, cte.f, IL.partitioning_NX), xlabel("f"), ylabel("IL [dB]")
-    legend('Expansion chamber', 'Inlet/outlet', 'Partitioning')
-        
+    legend('Expansion chamber', 'Inlet/outlet', 'Partitioning') 
 end
+
+% Vibro acoustics
+if figures(4)
+    
+    figure(10),
+    plot(cte.f, power.expansion.dB), xlabel("f"), ylabel("Radiated power [dB]")
+    
+
+end
+
 
 %save 'version1_2.mat'

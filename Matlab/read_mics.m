@@ -1,5 +1,5 @@
-function [mic, vibro] = read_mics()
-    
+function [mic, power] = read_mics()
+%% Microphones    
 % Normal duct
 mic.A_wo = read_table(readtable('mic1n','NumHeaderLines',1));
 mic.B_wo = read_table(readtable('mic2n','NumHeaderLines',1));
@@ -24,7 +24,20 @@ mic.B_prt = read_table(readtable('mic2e1.csv','NumHeaderLines',1));
 mic.C_prt = read_table(readtable('mic3e1.csv','NumHeaderLines',1));
 mic.D_prt = read_table(readtable('mic4e1.csv','NumHeaderLines',1));
 
-% Vibro acoustics
-vibro.data = importdata('vibro_sim-solution.csv').data;
+%% Vibro acoustics
+power.normal.real = importdata('power_normal.csv').data(:,2);
+power.normal.imag = importdata('power_normal.csv').data(:,3);
+
+power.expansion.real = importdata('vibro_sim-solution.csv').data(:,2);
+power.expansion.imag = importdata('vibro_sim-solution.csv').data(:,3);
+
+power.steel.real(:,1) = importdata('vibro0_5steel.csv').data(:,2);
+power.steel.imag(:,1) = importdata('vibro0_5steel.csv').data(:,3);
+power.steel.real(:,2) = importdata('vibro1_5steel.csv').data(:,2);
+power.steel.imag(:,2) = importdata('vibro1_5steel.csv').data(:,3);
+
+power.alum.real = importdata('vibro1_5alum.csv').data(:,2);
+power.alum.imag = importdata('vibro1_5alum.csv').data(:,3);
+
 end
 
