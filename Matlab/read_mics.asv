@@ -30,12 +30,6 @@ mic.B_vibro = read_table(readtable('mic2v.csv','NumHeaderLines',1));
 mic.C_vibro = read_table(readtable('mic3v.csv','NumHeaderLines',1));
 mic.D_vibro = read_table(readtable('mic4v.csv','NumHeaderLines',1));
 
-% absorption
-mic.A_ab = read_table(readtable('mic1ab.csv','NumHeaderLines',1));
-mic.B_ab = read_table(readtable('mic2ab.csv','NumHeaderLines',1));
-mic.C_ab = read_table(readtable('mic3ab.csv','NumHeaderLines',1));
-mic.D_ab = read_table(readtable('mic4ab.csv','NumHeaderLines',1));
-
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);
 power.normal.imag = importdata('power_normal.csv').data(:,3);
