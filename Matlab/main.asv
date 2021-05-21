@@ -3,7 +3,7 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, true, false, false];
+figures = [false, true, true, true];
 
 %% Calculations
 % Reflective Type muffler
@@ -84,6 +84,10 @@ if figures(4)
     plot(cte.f, power.steel15.dB, cte.f, power.alum15.dB), xlabel("f"), ylabel("Radiated power [dB]")
     legend('Steel - 1.5mm', 'Aluminium - 1.5mm')  
 end
+
+    figure(3),
+    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.expansion)), xlabel("f"), ylabel("TL [dB]")
+    legend('TL-Calculated', 'TL-Simulated')
 
 muffler_design(cte)
 tilefigs
