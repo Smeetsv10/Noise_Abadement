@@ -1,7 +1,7 @@
 function [IL,TL] = reflective_muffler(cte)
 %% Reactive type Mufflers
     %% Import data
-    mic = read_mics();
+    [mic, vibro] = read_mics();
     
 for i = 1:length(cte.f)
     %% Parameters
@@ -102,6 +102,10 @@ for i = 1:length(cte.f)
 end
 
 muffler_design(cte)
+
+figure(2),
+plot(cte.f, vibro(:,2) ), xlabel("f"), ylabel("Transmitted power [dB]")
+
 
 end
 

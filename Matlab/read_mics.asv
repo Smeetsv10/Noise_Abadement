@@ -1,4 +1,4 @@
-function [mic, vibro] = read_mics()
+function [mic] = read_mics()
     
 % Normal duct
 mic.A_wo = read_table(readtable('mic1n','NumHeaderLines',1));
@@ -25,6 +25,6 @@ mic.C_prt = read_table(readtable('mic3e1.csv','NumHeaderLines',1));
 mic.D_prt = read_table(readtable('mic4e1.csv','NumHeaderLines',1));
 
 % Vibro acoustics
-vibro = importdata('vibro_sim-solution.csv').data;
+
 end
 

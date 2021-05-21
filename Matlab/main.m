@@ -15,6 +15,7 @@ figures = [false, false, true];
 
 
 %% Post Processing
+% All reflective
 if figures(1)
     
     figure(4),
@@ -37,6 +38,7 @@ if figures(1)
     plot(cte.f, abs(TL.total)), xlabel("f"), ylabel("total TR [dB]")
 end
 
+% Expansion chamber
 if figures(2)
     
     figure(6),
@@ -49,6 +51,7 @@ if figures(2)
         
 end
 
+% Optimisation
 if figures(3)
     
     figure(8),
