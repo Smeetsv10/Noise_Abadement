@@ -37,13 +37,12 @@ power.normal.imag = importdata('power_normal.csv').data(:,3);
 power.expansion.real = importdata('vibro_sim-solution.csv').data(:,2);
 power.expansion.imag = importdata('vibro_sim-solution.csv').data(:,3);
 
-power.steel.real(:,1) = importdata('vibro0_5steel.csv').data(:,2);
-power.steel.imag(:,1) = importdata('vibro0_5steel.csv').data(:,3);
-power.steel.real(:,2) = importdata('vibro1_5steel.csv').data(:,2);
-power.steel.imag(:,2) = importdata('vibro1_5steel.csv').data(:,3);
-
-power.alum.real = importdata('vibro1_5alum.csv').data(:,2);
-power.alum.imag = importdata('vibro1_5alum.csv').data(:,3);
+power.steel05.real = importdata('vibro0_5steel.csv').data(:,2);
+power.steel05.imag = importdata('vibro0_5steel.csv').data(:,3);
+power.steel15.real = importdata('vibro1_5steel.csv').data(:,2);
+power.steel15.imag = importdata('vibro1_5steel.csv').data(:,3);
+power.alum15.real = importdata('vibro1_5alum.csv').data(:,2);
+power.alum15.imag = importdata('vibro1_5alum.csv').data(:,3);
 
 end
 

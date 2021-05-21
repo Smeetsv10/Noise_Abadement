@@ -38,13 +38,8 @@ for i = 1:length(cte.f)
     power.expansion.dB(i) = 10*log10(power.expansion.abs(i) / power.normal.abs(i));
  
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
-    
-    %% Inlet/outlet extension
-    [IL.ab_NX(i),TL.ab_NX(i)] = calc_IL_TL(mic.io, cte, i);
 
-    power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / power.normal.abs(i));
-    power.steel15.dB(i) = 10*log10( sqrt(power.steel15.real(i)^2+power.steel15.imag(i)^2) / power.normal.abs(i));
-    power.alum15.dB(i) = 10*log10( sqrt(power.alum15.real(i)^2+power.alum15.imag(i)^2) / power.normal.abs(i));
+    power.steel05(i) = 10*log10( sqrt(power.expansion.real(i)^2+power.expansion.imag(i)^2) / power.normal.abs(i));
 
     %% Side branch resonators
     % Helmholtz resonator:
