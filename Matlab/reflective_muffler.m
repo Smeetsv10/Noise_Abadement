@@ -38,6 +38,9 @@ for i = 1:length(cte.f)
     power.expansion.dB(i) = 10*log10(power.expansion.abs(i) / power.normal.abs(i));
  
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
+    
+    %% Inlet/outlet extension
+    [IL.ab_NX(i),TL.ab_NX(i)] = calc_IL_TL(mic.io, cte, i);
 
     %% Side branch resonators
     % Helmholtz resonator:
