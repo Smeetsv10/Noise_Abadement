@@ -3,38 +3,15 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, true, false, false]; % Total, Expansion chamber, Optimisation, Vibro Acoustics
+figures = [false, false, false, true]; % Expansion chamber, Vibro Acoustics,  Optimisation, Absorbing
 
 
 %% Calculations
 [IL,TL, power]= calculations_muffler(cte);
 
 %% Post Processing
-% Total reflective
-if figures(1)
-    
-    figure(1),
-    subplot(4,1,1), hold on
-    plot(cte.f, abs(TL.helmholtz1)), xlabel("f [Hz]"), ylabel("TR - Helmholtz resonator [dB]")
-    plot(cte.f, abs(TL.helmholtz2)), xlabel("f [Hz]"), ylabel("TR - Helmholtz resonator [dB]")
-    subplot(4,1,2)
-    plot(cte.f, abs(TL.lambda4)), xlabel("f [Hz]"), ylabel("TR - lambda/4 [dB]")
-    subplot(4,1,3)
-    plot(cte.f, abs(TL.expansion)), xlabel("f [Hz]"), ylabel("TR - expansion chamber [dB]")
-    subplot(4,1,4), hold on
-    plot(cte.f, abs(TL.helmholtz1)), xlabel("f [Hz]"),
-    plot(cte.f, abs(TL.helmholtz2)), xlabel("f [Hz]"),
-    plot(cte.f, abs(TL.expansion)), xlabel("f [Hz]"),
-    plot(cte.f, abs(TL.lambda4)), xlabel("f [Hz]"), ylabel("TR [dB]")
-    legend("Helmholtz resonator 1","Helmholtz resonator 2", "expansion chamber", "lambda/4 ")
-        
-    figure(2),
-    TL.total = TL.expansion + TL.lambda4;
-    plot(cte.f, abs(TL.total)), xlabel("f [Hz]"), ylabel("total TR [dB]")
-end
-
 % Expansion chamber
-if figures(2)
+if figures(1)
     
     figure(3),
     plot(cte.f, abs(TL.expansion), cte.f, abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
@@ -46,7 +23,7 @@ if figures(2)
 end
 
 % Optimisation
-if figures(3)
+if figures(2)
     
     figure(5),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.inlet_outlet_NX), cte.f, abs(TL.partitioning_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
@@ -58,7 +35,7 @@ if figures(3)
 end
 
 % Vibro acoustics
-if figures(4)
+if figures(3)
     
     figure(7),
     plot(cte.f, power.expCh.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
@@ -84,6 +61,17 @@ if figures(4)
     legend('Expansion chamber', 'Optimisations')
 end
 
+% Absorbing
+if figures(4)
+    
+    figure(12),
+    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.ab50_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
+    legend('Expansion chamber', 'Absorbing - 50mm')
+    
+    figure(13),
+    plot(cte.f, IL.expansion_NX, cte.f, IL.ab50_NX), xlabel("f [Hz]"), ylabel("IL [dB]")
+    legend('Expansion chamber', 'Absorbing -50mm') 
+end
 
 muffler_design(cte)
 tilefigs

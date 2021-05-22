@@ -1,6 +1,12 @@
 function muffler_design(cte)
 
 % coordinates:
+% Optimisation
+ExpCh = [-106.5 106.5];
+inlet = [-200 ExpCh(1)+(cte.L/2)*10^3];
+outlet = [ExpCh(2)-(cte.L/4)*10^3 ExpCh(2)+cte.d*10^3];
+
+% Expansion chamber
 ExpCh = [-106.5 106.5];
 inlet = [-200 ExpCh(1)];
 outlet = [ExpCh(2) ExpCh(2)+cte.d*10^3];

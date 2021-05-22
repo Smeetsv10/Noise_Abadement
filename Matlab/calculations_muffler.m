@@ -58,8 +58,8 @@ for i = 1:length(cte.f)
 % _________________________
 
     %% Absorbing material
-    %[IL.ab_NX(i),TL.ab_NX(i)] = calc_IL_TL(mic.ab, cte, i);
-
+    [IL.ab50_NX(i),TL.ab50_NX(i)] = calc_IL_TL(mic.ab50, cte, i);
+    
     %% Perforated ducts
 
 
@@ -67,54 +67,6 @@ for i = 1:length(cte.f)
 % Rest
 % _________________________
 
-    %% Side branch resonators
-    % Helmholtz resonator:
-    % resonator 1 (f = 1640 Hz):
-    l = 0.010; % m
-    D_neck = cte.D*0.3;
-    h = 0.070; % max 70
-    D_vol = 0.030;
-    V = (pi/4)*D_vol^2*h; % m^3
-
-    S_1 = pi*(cte.D/2)^2;
-    S_s = pi*(D_neck/2)^2;
-
-    Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
-
-    f_res(i) = cte.c/(2*pi)*sqrt(S_s/(l*V));
-
-    IL.helmholtz1(i) = 0;
-    TL.helmholtz1(i) = 20*log10(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i)));
-    
-    % resonator 2 (f = 820 Hz):
-    l = 0.010; % m
-    D_neck = cte.D*0.3;
-    h = 0.070; % max 70
-    D_vol = 0.015;
-    V = (pi/4)*D_vol^2*h; % m^3
-
-    S_1 = pi*(cte.D/2)^2;
-    S_s = pi*(D_neck/2)^2;
-
-    Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
-
-    f_res(i) = cte.c/(2*pi)*sqrt(S_s/(l*V));
-
-    IL.helmholtz2(i) = 0;
-    TL.helmholtz2(i) = 20*log10(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i)));
-    
-    % Quarter-wavelength resonator:
-    % 820Hz: 0.104mm
-    % 1640Hz: 0.052mm
-    H = 0.052; % lambda/4 [m]
-    D_neck = 0.5*cte.D;
-    
-    S_s = pi*(D_neck/2)^2;
-    Z_s(i) = -1i*cte.rho_air*cte.c*cot(k*H);  % impedance lambda/4 resonator
-    %Q = (cte.rho_air*cte.c/R_s)*sqrt();
-
-    IL.lambda4(i) = 0;
-    TL.lambda4(i) = 10*log10((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
     
 end
 
