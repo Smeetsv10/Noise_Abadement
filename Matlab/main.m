@@ -3,7 +3,7 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, true, false]; % Total, Expansion chamber, Optimisation, Vibro Acoustics
+figures = [false, true, false, false]; % Total, Expansion chamber, Optimisation, Vibro Acoustics
 
 %% Calculations
 [IL,TL, power]= calculations_muffler(cte);

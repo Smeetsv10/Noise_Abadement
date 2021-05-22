@@ -7,10 +7,10 @@ mic.wo.C = read_table(readtable('mic3n','NumHeaderLines',1));
 mic.wo.D = read_table(readtable('mic4n','NumHeaderLines',1));
 
 % Expansion tube
-mic.expCh.A = read_table(readtable('mic1.csv','NumHeaderLines',1));
-mic.expCh.B = read_table(readtable('mic2.csv','NumHeaderLines',1));
-mic.expCh.C = read_table(readtable('mic3.csv','NumHeaderLines',1));
-mic.expCh.D = read_table(readtable('mic4.csv','NumHeaderLines',1));
+mic.expCh.A = read_table(readtable('mic1test.csv','NumHeaderLines',1));
+mic.expCh.B = read_table(readtable('mic2test.csv','NumHeaderLines',1));
+mic.expCh.C = read_table(readtable('mic3test.csv','NumHeaderLines',1));
+mic.expCh.D = read_table(readtable('mic4test.csv','NumHeaderLines',1));
 
 % Inlet/outlet extension
 mic.io.A = read_table(readtable('mic1e1.csv','NumHeaderLines',1));
