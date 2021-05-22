@@ -5,6 +5,7 @@ cte.c = 341; % m/s
 cte.rho_air = 1.224; % density [kg/m^3]
 cte.mu_air = 1.8*10^-5; % viscosity [kg/m*s]
 cte.gamma = 1.4;
+cte.power_ref = 10^-12; % W
 
 % Simcenter parameters [m, Hz]
 cte.L = 0.213; % length

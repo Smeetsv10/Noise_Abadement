@@ -31,20 +31,23 @@ for i = 1:length(cte.f)
     
     %% Inlet/outlet extension
     [IL.inlet_outlet_NX(i),TL.inlet_outlet_NX(i)] = calc_IL_TL(mic.io, cte, i);
-    
+
     %% Partitioning expansion chamber
     [IL.partitioning_NX(i),TL.partitioning_NX(i)] = calc_IL_TL(mic.prt, cte, i);
-
+    power.prt.abs(i) = sqrt(power.prt.real(i)^2+power.prt.imag(i)^2);
+    power.prt.dB(i) = 10*log10(power.prt.abs(i) / cte.power_ref);
+    
     %% Vibro acoustics
-    power.expansion.abs(i) = sqrt(power.expansion.real(i)^2+power.expansion.imag(i)^2);
+    power.expCh.abs(i) = sqrt(power.expCh.real(i)^2+power.expCh.imag(i)^2);
     power.normal.abs(i) = sqrt(power.normal.real(i)^2+power.normal.imag(i)^2);
-    power.expansion.dB(i) = 10*log10(power.expansion.abs(i) / power.normal.abs(i));
+    power.expCh.dB(i) = 10*log10(power.expCh.abs(i) / cte.power_ref);
  
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
 
-    power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / power.normal.abs(i));
-    power.steel15.dB(i) = 10*log10( sqrt(power.steel15.real(i)^2+power.steel15.imag(i)^2) / power.normal.abs(i));
-    power.alum15.dB(i) = 10*log10( sqrt(power.alum15.real(i)^2+power.alum15.imag(i)^2) / power.normal.abs(i));
+    power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / cte.power_ref);
+    power.steel15.dB(i) = 10*log10( sqrt(power.steel15.real(i)^2+power.steel15.imag(i)^2) / cte.power_ref);
+    power.alum15.dB(i) = 10*log10( sqrt(power.alum15.real(i)^2+power.alum15.imag(i)^2) / cte.power_ref);
+    power.tit05.dB(i) = 10*log10( sqrt(power.tit05.real(i)^2+power.tit05.imag(i)^2) / cte.power_ref);
     
     t(i) = (0.5 + 0.0050*i)*10^-3; %0.5..1.5
     Vol_mat(i) = 2*(pi/4)*(D_new^2-cte.D^2)*t(i) + 2*pi*D_new*(cte.L-2*t(i))*t(i);

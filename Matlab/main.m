@@ -1,10 +1,10 @@
 clear
 close all
-%
 
 %% Initialize parameters
 cte = set_cte();
 figures = [false, true, false, false]; % Total, Expansion chamber, Optimisation, Vibro Acoustics
+
 
 %% Calculations
 [IL,TL, power]= calculations_muffler(cte);
@@ -61,7 +61,7 @@ end
 if figures(4)
     
     figure(7),
-    plot(cte.f, power.expansion.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
+    plot(cte.f, power.expCh.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
     
     figure(8),
     plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.vibro_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
@@ -76,15 +76,14 @@ if figures(4)
     legend('Steel - 0.5mm', 'Steel - 1.5mm')
 
     figure(11),
-    plot(cte.f, power.steel15.dB, cte.f, power.alum15.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
-    legend('Steel - 1.5mm', 'Aluminium - 1.5mm')
-
+    plot(cte.f, power.steel05.dB, cte.f, power.tit05.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
+    legend('Steel - 0.5mm', 'Titanium - 0.5mm')
+    
     figure(12),
-    plot(cte.f, power.steel15.dB, cte.f, power.alum15.dB), xlabel("thickness [mm]"), ylabel("Price [eur]")
-    legend('Steel - 1.5mm', 'Aluminium - 1.5mm')
-
-
+    plot(cte.f, power.expCh.dB, cte.f, power.prt.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
+    legend('Expansion chamber', 'Optimisations')
 end
+
 
 muffler_design(cte)
 tilefigs
