@@ -30,11 +30,31 @@ mic.vibro.B = read_table(readtable('mic2v.csv','NumHeaderLines',1));
 mic.vibro.C = read_table(readtable('mic3v.csv','NumHeaderLines',1));
 mic.vibro.D = read_table(readtable('mic4v.csv','NumHeaderLines',1));
 
-% Expansion tube
+% Absorbing material
+mic.ab20.A = read_table(readtable('mic1ab20.csv','NumHeaderLines',1));
+mic.ab20.B = read_table(readtable('mic2ab20.csv','NumHeaderLines',1));
+mic.ab20.C = read_table(readtable('mic3ab20.csv','NumHeaderLines',1));
+mic.ab20.D = read_table(readtable('mic4ab20.csv','NumHeaderLines',1));
+
 mic.ab50.A = read_table(readtable('mic1ab.csv','NumHeaderLines',1));
 mic.ab50.B = read_table(readtable('mic2ab.csv','NumHeaderLines',1));
 mic.ab50.C = read_table(readtable('mic3ab.csv','NumHeaderLines',1));
 mic.ab50.D = read_table(readtable('mic4ab.csv','NumHeaderLines',1));
+
+mic.ab80.A = read_table(readtable('mic1ab80.csv','NumHeaderLines',1));
+mic.ab80.B = read_table(readtable('mic2ab80.csv','NumHeaderLines',1));
+mic.ab80.C = read_table(readtable('mic3ab80.csv','NumHeaderLines',1));
+mic.ab80.D = read_table(readtable('mic4ab80.csv','NumHeaderLines',1));
+
+% Perforated tube
+mic.perf.A = read_table(readtable('mic1p200.csv','NumHeaderLines',1));
+mic.perf.B = read_table(readtable('mic2p200.csv','NumHeaderLines',1));
+mic.perf.C = read_table(readtable('mic3p200.csv','NumHeaderLines',1));
+mic.perf.D = read_table(readtable('mic4p200.csv','NumHeaderLines',1));
+mic.perfl.A = read_table(readtable('mic1p200l.csv','NumHeaderLines',1));
+mic.perfl.B = read_table(readtable('mic2p200l.csv','NumHeaderLines',1));
+mic.perfl.C = read_table(readtable('mic3p200l.csv','NumHeaderLines',1));
+mic.perfl.D = read_table(readtable('mic4p200l.csv','NumHeaderLines',1));
 
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);

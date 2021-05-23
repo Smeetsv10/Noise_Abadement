@@ -9,9 +9,11 @@
 
     S_1 = pi*(cte.D/2)^2;
     S_s = pi*(D_neck/2)^2;
+    S_vol = pi*(D_vol/2)^2;
 
     Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
-
+    Z_HR(i) = (1i*cte.rho_air*cte.c)*(S_vol*tan(k*l)*tan(k*h)-S_s)/(S_vol*tan(k*h)+S_s*tan(k*l)); % better impedance Helmholtz Resonator
+    
     f_res(i) = cte.c/(2*pi)*sqrt(S_s/(l*V));
 
     IL.helmholtz1(i) = 0;

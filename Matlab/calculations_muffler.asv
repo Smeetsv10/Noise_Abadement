@@ -62,11 +62,12 @@ for i = 1:length(cte.f)
     [IL.ab50_NX(i),TL.ab50_NX(i)] = calc_IL_TL(mic.ab50, cte, i);
     [IL.ab80_NX(i),TL.ab80_NX(i)] = calc_IL_TL(mic.ab80, cte, i);
     
-
+    figure(15),
+    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm')
     
     %% Perforated ducts
-    [IL.perf_NX(i),TL.perf_NX(i)] = calc_IL_TL(mic.perf, cte, i);
-    [IL.perfl_NX(i),TL.perfl_NX(i)] = calc_IL_TL(mic.perfl, cte, i);
+    
 
 %% 
 % Rest
@@ -74,7 +75,7 @@ for i = 1:length(cte.f)
 
     
 end
-    
+
 %     figure(12),
 %     plot(t*1000, tot_steel_price, t*1000, tot_titanium_price), xlabel("thickness [mm]"), ylabel("Price [eur]")
 %     legend('Steel', 'Titanium')

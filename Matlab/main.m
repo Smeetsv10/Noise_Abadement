@@ -3,7 +3,7 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, false, true]; % Expansion chamber, Vibro Acoustics,  Optimisation, Absorbing
+figures = [false, false, false, true]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing
 
 
 %% Calculations
@@ -65,12 +65,20 @@ end
 if figures(4)
     
     figure(11),
-    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.ab50_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
-    legend('Expansion chamber', 'Absorbing - 50mm')
+    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm')
     
     figure(12),
-    plot(cte.f, IL.expansion_NX, cte.f, IL.ab50_NX), xlabel("f [Hz]"), ylabel("IL [dB]")
-    legend('Expansion chamber', 'Absorbing -50mm') 
+    plot(cte.f, IL.ab20_NX,cte.f, IL.ab50_NX, cte.f, IL.ab80_NX ), xlabel("f [Hz]"), ylabel("IL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm')
+    
+    figure(13),
+    plot(cte.f, abs(TL.perf_NX), cte.f, abs(TL.perfl_NX)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
+    legend('perf', 'perfl')
+    
+    figure(14),
+    plot(cte.f, IL.perf_NX,cte.f, IL.perf_NX), xlabel("f [Hz]"), ylabel("IL - Perforated [dB]")
+    legend('perf', 'perfl')
 end
 
 muffler_design(cte)
