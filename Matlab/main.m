@@ -65,16 +65,16 @@ end
 if figures(4)
     
     figure(11),
-    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
-    legend('20mm', '50mm','80mm')
+    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX),cte.f,abs(TL.expansion)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm','normal muffler')
     
     figure(12),
     plot(cte.f, IL.ab20_NX,cte.f, IL.ab50_NX, cte.f, IL.ab80_NX ), xlabel("f [Hz]"), ylabel("IL - Absorbing [dB]")
     legend('20mm', '50mm','80mm')
     
     figure(13),
-    plot(cte.f, abs(TL.perf_NX), cte.f, abs(TL.perfl_NX)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
-    legend('perf', 'perfl')
+    plot(cte.f, abs(TL.perf_NX), cte.f, abs(TL.perfl_NX),cte.f,abs(TL.expansion)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
+    legend('perf', 'perfl','normal muffler')
     
     figure(14),
     plot(cte.f, IL.perf_NX,cte.f, IL.perf_NX), xlabel("f [Hz]"), ylabel("IL - Perforated [dB]")
