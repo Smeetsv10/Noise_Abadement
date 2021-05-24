@@ -12,7 +12,6 @@ for i = 1:length(cte.f)
 %% 
 % Reflective type Mufflers   
 % _________________________
-
     %% Expansion chamber:
     D_new = cte.D*5; % upper limit is factor 5, 0.200m
 
@@ -28,7 +27,8 @@ for i = 1:length(cte.f)
     TL.expansion(i) = 10*log10(cos(k*cte.L)^2+0.25*(N+(1/N))^2*sin(k*cte.L)^2); % cos and + or 1 and - !
     [IL.expansion_NX(i), TL.expansion_NX(i)] = calc_IL_TL(mic.expCh, cte, i);
     
-    
+    %% Normal
+    [IL.normal_NX(i),TL.normal_NX(i)] = calc_IL_TL(mic.wo, cte, i);
     %% Inlet/outlet extension
     [IL.inlet_outlet_NX(i),TL.inlet_outlet_NX(i)] = calc_IL_TL(mic.io, cte, i);
 
@@ -60,14 +60,16 @@ for i = 1:length(cte.f)
     %% Absorbing material
     [IL.ab20_NX(i),TL.ab20_NX(i)] = calc_IL_TL(mic.ab20, cte, i);
     [IL.ab50_NX(i),TL.ab50_NX(i)] = calc_IL_TL(mic.ab50, cte, i);
-    [IL.ab80_NX(i),TL.ab80_NX(i)] = calc_IL_TL(mic.ab80, cte, i);
-    
-
+    [IL.ab80_NX(i),TL.ab80_NX(i)] = calc_IL_TL(mic.ab80, cte, i);  
     
     %% Perforated ducts
     [IL.perf_NX(i),TL.perf_NX(i)] = calc_IL_TL(mic.perf, cte, i);
-    [IL.perfl_NX(i),TL.perfl_NX(i)] = calc_IL_TL(mic.perfl, cte, i);
+    [IL.perf_small_NX(i),TL.perf_small_NX(i)] = calc_IL_TL(mic.perf_small, cte, i);
+    [IL.perf_large_NX(i),TL.perf_large_NX(i)] = calc_IL_TL(mic.perf_large, cte, i);
 
+    %% Total
+    [IL.ab_tot(i),TL.ab_tot(i)] = calc_IL_TL(mic.ab_tot, cte, i);
+    
 %% 
 % Rest
 % _________________________

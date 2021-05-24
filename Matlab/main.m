@@ -1,5 +1,5 @@
 clear
-
+close all
 
 %% Initialize parameters
 cte = set_cte();
@@ -64,21 +64,38 @@ end
 % Absorbing
 if figures(4)
     
+    % Absorbing material
     figure(11),
-    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX),cte.f,abs(TL.expansion)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
-    legend('20mm', '50mm','80mm','normal muffler')
-    
+    plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX),cte.f,abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm','Expansion chamber')
     figure(12),
-    plot(cte.f, IL.ab20_NX,cte.f, IL.ab50_NX, cte.f, IL.ab80_NX ), xlabel("f [Hz]"), ylabel("IL - Absorbing [dB]")
-    legend('20mm', '50mm','80mm')
+    plot(cte.f, IL.ab20_NX, cte.f, IL.ab50_NX, cte.f, IL.ab80_NX, cte.f, IL.expansion_NX ), xlabel("f [Hz]"), ylabel("IL - Absorbing [dB]")
+    legend('20mm', '50mm','80mm', 'Expansion chamber')
     
+    % Perforated tube
     figure(13),
-    plot(cte.f, abs(TL.perf_NX), cte.f, abs(TL.perfl_NX),cte.f,abs(TL.expansion)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
-    legend('perf', 'perfl','normal muffler')
-    
+    plot(cte.f, abs(TL.perf_small_NX), cte.f, abs(TL.perf_large_NX),cte.f,abs(TL.inlet_outlet_NX)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
+    legend('small holes', 'large holes','inlet/outlet')
     figure(14),
-    plot(cte.f, IL.perf_NX,cte.f, IL.perf_NX), xlabel("f [Hz]"), ylabel("IL - Perforated [dB]")
-    legend('perf', 'perfl')
+    plot(cte.f, IL.perf_small_NX, cte.f, IL.perf_large_NX, cte.f, IL.inlet_outlet_NX), xlabel("f [Hz]"), ylabel("IL - Perforated [dB]")
+    legend('small holes', 'large holes','inlet/outlet')
+    
+    % Final absorbing
+    figure(15),
+    plot(cte.f, abs(TL.ab_tot) ,cte.f,abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
+    legend('Absorbing', 'Expansion chamber')
+    figure(16),
+    plot(cte.f, IL.ab_tot, cte.f, IL.expansion_NX), xlabel("f [Hz]"), ylabel("IL [dB]")
+    legend('Absorbing', 'Expansion chamber')
+    
+    % Comparison
+    figure(17),
+    plot(cte.f, abs(TL.ab_tot), cte.f, abs(TL.partitioning_NX), cte.f, abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
+    legend('Absorbing', 'Reflective','Expansion chamber')
+    figure(18),
+    plot(cte.f, IL.ab_tot, cte.f, IL.partitioning_NX, cte.f, IL.expansion_NX), xlabel("f [Hz]"), ylabel("IL [dB]")
+    legend('Absorbing', 'Reflective','Expansion chamber')
+    
 end
 
 muffler_design(cte)

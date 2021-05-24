@@ -47,15 +47,26 @@ mic.ab80.C = read_table(readtable('mic3ab80.csv','NumHeaderLines',1));
 mic.ab80.D = read_table(readtable('mic4ab80.csv','NumHeaderLines',1));
 
 % Perforated tube
-mic.perf.A = read_table(readtable('mic1c.csv','NumHeaderLines',1));
-mic.perf.B = read_table(readtable('mic2c.csv','NumHeaderLines',1));
-mic.perf.C = read_table(readtable('mic3c.csv','NumHeaderLines',1));
-mic.perf.D = read_table(readtable('mic4c.csv','NumHeaderLines',1));
-mic.perfl.A = read_table(readtable('mic1p.csv','NumHeaderLines',1));
-mic.perfl.B = read_table(readtable('mic2p.csv','NumHeaderLines',1));
-mic.perfl.C = read_table(readtable('mic3p.csv','NumHeaderLines',1));
-mic.perfl.D = read_table(readtable('mic4p.csv','NumHeaderLines',1));
+mic.perf.A = read_table(readtable('mic1p.csv','NumHeaderLines',1));
+mic.perf.B = read_table(readtable('mic2p.csv','NumHeaderLines',1));
+mic.perf.C = read_table(readtable('mic3p.csv','NumHeaderLines',1));
+mic.perf.D = read_table(readtable('mic4p.csv','NumHeaderLines',1));
 
+mic.perf_small.A = read_table(readtable('mic1c.csv','NumHeaderLines',1));
+mic.perf_small.B = read_table(readtable('mic2c.csv','NumHeaderLines',1));
+mic.perf_small.C = read_table(readtable('mic3c.csv','NumHeaderLines',1));
+mic.perf_small.D = read_table(readtable('mic4c.csv','NumHeaderLines',1));
+
+mic.perf_large.A = read_table(readtable('mic1c1.csv','NumHeaderLines',1));
+mic.perf_large.B = read_table(readtable('mic2c1.csv','NumHeaderLines',1));
+mic.perf_large.C = read_table(readtable('mic3c1.csv','NumHeaderLines',1));
+mic.perf_large.D = read_table(readtable('mic4c1.csv','NumHeaderLines',1));
+
+% Perforated tube + absorbing material
+mic.ab_tot.A = read_table(readtable('mic1c2.csv','NumHeaderLines',1));
+mic.ab_tot.B = read_table(readtable('mic2c2.csv','NumHeaderLines',1));
+mic.ab_tot.C = read_table(readtable('mic3c2.csv','NumHeaderLines',1));
+mic.ab_tot.D = read_table(readtable('mic4c2.csv','NumHeaderLines',1));
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);
 power.normal.imag = importdata('power_normal.csv').data(:,3);
