@@ -70,7 +70,13 @@ for i = 1:length(cte.f)
     %% Total
     [IL.ab_tot(i),TL.ab_tot(i)] = calc_IL_TL(mic.ab_tot, cte, i);
     
-
+    figure(20),
+    subplot(3,1,1)
+    plot(cte.f, mic.ab20.A.p, cte.f, mic.ab20.B.p, cte.f, mic.ab20.C.p, cte.f, mic.ab20.D.p)
+    subplot(3,1,2)
+    plot(cte.f, mic.ab50.A.p, cte.f, mic.ab50.B.p, cte.f, mic.ab50.C.p, cte.f, mic.ab50.D.p)
+    subplot(3,1,3)
+    plot(cte.f, mic.ab80.A.p, cte.f, mic.ab80.B.p, cte.f, mic.ab80.C.p, cte.f, mic.ab80.D.p)
     
 %% 
 % Rest

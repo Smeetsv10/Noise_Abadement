@@ -3,7 +3,7 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, false, true, false]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing
+figures = [false, false, false, true, false]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing, HR
 
 
 %% Calculations
