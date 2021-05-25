@@ -3,11 +3,11 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, false, true, false]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing
+figures = [false, false, false, false, true]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing
 
 
 %% Calculations
-[IL,TL,ILh,TLh, power]= calculations_muffler(cte);
+[IL,TL, power]= calculations_muffler(cte);
 
 %% Post Processing
 % Expansion chamber
@@ -100,7 +100,7 @@ end
 if figures(5)
 
     figure(18),
-    plot(cte.fh, abs(TLh.helm)), xlabel("f [Hz]"), ylabel("TL [dB]")
+    plot(cte.f, abs(TL.helm)), xlabel("f [Hz]"), ylabel("TL [dB]")
     legend('TL-Calculated', 'TL-Simulated')
     
 

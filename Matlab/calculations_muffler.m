@@ -1,4 +1,4 @@
-function [IL,TL, power] = calculations_muffler(cte)
+function [IL,TL,ILh,TLh, power] = calculations_muffler(cte)
     %% Import data
     [mic, power] = read_mics();
     
@@ -70,13 +70,20 @@ for i = 1:length(cte.f)
     %% Total
     [IL.ab_tot(i),TL.ab_tot(i)] = calc_IL_TL(mic.ab_tot, cte, i);
     
+
+    
 %% 
 % Rest
 % _________________________
 
     
 end
+
+for i = 1:length(cte.fh)
+    %% Helmholtz
     
+    [ILh.helm(i),TLh.helm(i)] = TL_helmholtz(mic.helm, cte, i);
+end
 %     figure(12),
 %     plot(t*1000, tot_steel_price, t*1000, tot_titanium_price), xlabel("thickness [mm]"), ylabel("Price [eur]")
 %     legend('Steel', 'Titanium')
