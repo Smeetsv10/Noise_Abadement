@@ -1,5 +1,5 @@
 clear
-close all
+
 cte = set_cte();
 
 for i = 1:length(cte.f)   
@@ -54,7 +54,7 @@ function [IL, TL] = HR_IL_TL(f_HR, cte, i)
     w = 2*pi*f;
     k = w/cte.c; 
     
-    D_neck = cte.D*0.3; 
+    D_neck = cte.D*0.2; 
     S_1 = pi*(cte.D/2)^2;
     S_s = pi*(D_neck/2)^2;
     
@@ -63,15 +63,19 @@ function [IL, TL] = HR_IL_TL(f_HR, cte, i)
         h = 0.080-l(j);
         V = (cte.c/(2*pi*f_HR))^2*(S_s/l(j));
         D_vol = sqrt((4*V)/(pi*h));
+        if D_vol > 0.300
+            D_vol = 0.300;
+            h = (4/pi)*V/D_vol^2;
+        end
         A_mat(j) = pi*D_neck*l(j) + pi*D_vol*h+2*(pi/4)*D_vol^2-(pi/4)*D_neck^2;
     end
     
     [A,I] = min(A_mat);
-    l = l(I) % length where minimal material is used
-    h = 0.080-l
+    l = l(I); % length where minimal material is used
+    h = 0.080-l;
     
     V = (cte.c/(2*pi*f_HR))^2*(S_s/l);
-    D_vol = sqrt((4*V)/(pi*h))
+    D_vol = sqrt((4*V)/(pi*h));
     S_vol = pi*(D_vol/2)^2;
 
     %Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
@@ -83,7 +87,11 @@ function [IL, TL] = HR_IL_TL(f_HR, cte, i)
     TL = 20*log10(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR(i)));
     
     % plot HZ-dimensions;
-    if f_HR==40
+    if i == 1 && f_HR == 40
+        disp(strcat('l: ',num2str(l)))
+        disp(strcat('h: ',num2str(h)))
+        disp(strcat('D_vol: ',num2str(D_vol)))
+        
         figure(1),title("HR design"), hold on
         plot([-D_neck/2, -D_neck/2], [0 l],'b-', 'LineWidth', 2),
         plot([D_neck/2, D_neck/2], [0 l],'b-', 'LineWidth', 2),
@@ -97,5 +105,8 @@ function [IL, TL] = HR_IL_TL(f_HR, cte, i)
         plot([-D_vol/2, D_vol/2],[l+h l+h],'b-', 'LineWidth', 2),
 
         axis([-0.3 0.3 -0.3 0.3])
+        
+        figure(3),
+        plot(A_mat)
     end
 end
