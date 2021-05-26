@@ -15,9 +15,9 @@ for i = 1:length(cte.f)
     % resonator 1 (f = 40 Hz):
     f_HR = 40;
     [IL.helmholtz1(i),TL.helmholtz1(i), Z_HR_40(i)] = HR_IL_TL(f_HR, cte, i);
-    TM(:,:,i) = [1,0; 1/Z_HR_40(i) 1/cte.rho_air];
-    TL.HR(i) = 20*log10( abs(TM(1,1,i) + (S/cte.c)*TM(1,2,i) + (cte.c/S)*TM(2,1,i) + TM(2,2,i) )/2 );
-    
+%     TM(:,:,i) = [1,0; 1/Z_HR_40(i) 1/cte.rho_air];
+%     TL.HR(i) = 20*log10( abs(TM(1,1,i) + (S/cte.c)*TM(1,2,i) + (cte.c/S)*TM(2,1,i) + TM(2,2,i) )/2 );
+     
     % resonator 1 (f = 1640 Hz):
     f_HR = 2000;
     [IL.helmholtz2(i),TL.helmholtz2(i), Z_HR_2000(i)] = HR_IL_TL(f_HR, cte, i);
@@ -69,7 +69,7 @@ plot(cte.f, abs(TL.lambda4)), xlabel("f [Hz]"), ylabel("TR [dB]")
 legend("Helmholtz resonator 1","Helmholtz resonator 2", "lambda/4 ")
 
 figure(3)
-plot(cte.f, abs(TL.HR), cte.f, abs(TL.helmholtz1))
+plot(cte.f, Z_HR_40)
 
 
 function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
@@ -77,14 +77,15 @@ function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
     w = 2*pi*f;
     k = w/cte.c; 
     
-    D_neck = cte.D*0.2; 
+    D_neck = cte.D*0.1; 
     S_1 = pi*(cte.D/2)^2;
     S_s = pi*(D_neck/2)^2;
     
     l = (0.001:0.001:0.080);
     for j = 1:length(l)
         h = 0.080-l(j);
-        V = (cte.c/(2*pi*f_HR))^2*(S_s/l(j));
+        l_eq = l(j) +1.7*D_neck/2;
+        V = (cte.c/(2*pi*f_HR))^2*(S_s/l_eq);
         D_vol = sqrt((4*V)/(pi*h));
         if D_vol > 0.300
             D_vol = 0.300;
@@ -95,7 +96,7 @@ function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
     
     [A,I] = min(A_mat);
     l = l(I); % length where minimal material is used
-    h = 0.080-l;
+    h = 0.040-l;
     
     V = (cte.c/(2*pi*f_HR))^2*(S_s/l);
     D_vol = sqrt((4*V)/(pi*h));
@@ -114,6 +115,7 @@ function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
         disp(strcat('l: ',num2str(l)))
         disp(strcat('h: ',num2str(h)))
         disp(strcat('D_vol: ',num2str(D_vol)))
+        disp(strcat('V: ',num2str(V)))
         
         figure(2),title("HR design"), hold on
         plot([-D_neck/2, -D_neck/2], [0 l],'b-', 'LineWidth', 2),
@@ -123,7 +125,39 @@ function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
         plot([-D_vol/2, -D_vol/2], [l l+h],'b-', 'LineWidth', 2),
         plot([D_vol/2, D_vol/2], [l l+h],'b-', 'LineWidth', 2),
         plot([-D_vol/2, D_vol/2],[l+h l+h],'b-', 'LineWidth', 2),
-        axis([-0.3 0.3 -0.3 0.3])
+        axis([-0.1 0.1 -0.1 0.1])
         
-    end
+    end 
+    
+end
+
+function [IL, TL, Z_HR] = HR_IL_TL2(f_HR, cte, i)
+    f = cte.f(i);
+    w = 2*pi*f;
+    k = w/cte.c; 
+    
+    D_neck = cte.D*0.3; 
+    S_1 = pi*(cte.D/2)^2;
+    S_s = pi*(D_neck/2)^2;
+    
+    l = (0.001:0.001:0.060);
+        for j = 1:length(l)
+        h = 0.080-l(j);
+        l_eq = l(j) +1.7*D_neck/2;
+        V = (cte.c/(2*pi*f_HR))^2*(S_s/l_eq);
+        D_vol = sqrt((4*V)/(pi*h));
+        if D_vol > 0.300
+            D_vol = 0.300;
+            h = (4/pi)*V/D_vol^2;
+        end
+        A_mat(j) = pi*D_neck*l(j) + pi*D_vol*h+2*(pi/4)*D_vol^2-(pi/4)*D_neck^2;
+        end
+    
+    Z_HR = (1i*cte.rho_air*cte.c)*(S_vol*tan(k*l)*tan(k*h)-S_s)/(S_vol*tan(k*h)+S_s*tan(k*l)); % better impedance Helmholtz Resonator
+    Z_HR = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
+    
+    f_res = (cte.c/(2*pi))*(D_neck/D_vol)*sqrt(1/(l*h));
+    
+    IL = 0;
+    TL = 20*log10(abs(1+0.5*(S_s/S_1)*cte.rho_air*cte.c/Z_HR));
 end

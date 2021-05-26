@@ -41,7 +41,8 @@ for i = 1:length(cte.f)
     power.expCh.abs(i) = sqrt(power.expCh.real(i)^2+power.expCh.imag(i)^2);
     power.normal.abs(i) = sqrt(power.normal.real(i)^2+power.normal.imag(i)^2);
     power.expCh.dB(i) = 10*log10(power.expCh.abs(i) / cte.power_ref);
- 
+    power.normal.dB(i) = 10*log10(power.normal.abs(i) / cte.power_ref);
+    
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
 
     power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / cte.power_ref);
@@ -70,13 +71,13 @@ for i = 1:length(cte.f)
     %% Total
     [IL.ab_tot(i),TL.ab_tot(i)] = calc_IL_TL(mic.ab_tot, cte, i);
     
-    figure(20),
-    subplot(3,1,1)
-    plot(cte.f, mic.ab20.A.p, cte.f, mic.ab20.B.p, cte.f, mic.ab20.C.p, cte.f, mic.ab20.D.p)
-    subplot(3,1,2)
-    plot(cte.f, mic.ab50.A.p, cte.f, mic.ab50.B.p, cte.f, mic.ab50.C.p, cte.f, mic.ab50.D.p)
-    subplot(3,1,3)
-    plot(cte.f, mic.ab80.A.p, cte.f, mic.ab80.B.p, cte.f, mic.ab80.C.p, cte.f, mic.ab80.D.p)
+%     figure(20),
+%     subplot(3,1,1)
+%     plot(cte.f, mic.ab20.A.p, cte.f, mic.ab20.B.p, cte.f, mic.ab20.C.p, cte.f, mic.ab20.D.p)
+%     subplot(3,1,2)
+%     plot(cte.f, mic.ab50.A.p, cte.f, mic.ab50.B.p, cte.f, mic.ab50.C.p, cte.f, mic.ab50.D.p)
+%     subplot(3,1,3)
+%     plot(cte.f, mic.ab80.A.p, cte.f, mic.ab80.B.p, cte.f, mic.ab80.C.p, cte.f, mic.ab80.D.p)
     
 %% 
 % Rest

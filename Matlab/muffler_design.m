@@ -19,7 +19,7 @@ HR_1 = 36;
 HR_2 = 88;
 
 
-figure(1),title("Muffler design"), hold on
+figure(100),title("Muffler design"), hold on
 plot(inlet,1000*[-cte.D/2 -cte.D/2],'b-', 'LineWidth', 2),
 plot(inlet,1000*[cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
 plot([inlet(1) inlet(1)],1000*[-cte.D/2 cte.D/2],'b-', 'LineWidth', 2),
