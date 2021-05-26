@@ -9,7 +9,7 @@ for i = 1:length(cte.fh)
     f = cte.fh(i);
 
     
-    velx1 = table2array(NXreader_PCH('h.pch').velocity_x.values);
+    velx1 = NXreader_PCH('h.pch').velocity_x;
     velx2 = NXreader_PCH('hv.pch').velocity_x;
     
     
