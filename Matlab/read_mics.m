@@ -69,10 +69,10 @@ mic.ab_tot.C = read_table(readtable('mic33.csv','NumHeaderLines',1));
 mic.ab_tot.D = read_table(readtable('mic44.csv','NumHeaderLines',1));
 
 % Helmholtz
-mic.helm.A = read_table(readtable('mic1h2l.csv','NumHeaderLines',1));
-mic.helm.B = read_table(readtable('mic2h2l.csv','NumHeaderLines',1));
-mic.helm.C = read_table(readtable('mic3h2l.csv','NumHeaderLines',1));
-mic.helm.D = read_table(readtable('mic4h2l.csv','NumHeaderLines',1));
+mic.helm.A = read_table(readtable('mic1pa.csv','NumHeaderLines',1));
+mic.helm.B = read_table(readtable('mic2pa.csv','NumHeaderLines',1));
+mic.helm.C = read_table(readtable('mic3pa.csv','NumHeaderLines',1));
+mic.helm.D = read_table(readtable('mic4pa.csv','NumHeaderLines',1));
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);
 power.normal.imag = importdata('power_normal.csv').data(:,3);
