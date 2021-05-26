@@ -4,12 +4,31 @@ close all
 cte = set_cte();
 mic = read_mics();
 
-vel.helm1.A = read_vel(readtable('vel2h.csv','NumHeaderLines',1));
-vel.helm1.D = read_vel(readtable('vel3h.csv','NumHeaderLines',1));
-vel.helm2.A = read_vel(readtable('vel2hv.csv','NumHeaderLines',1));
-vel.helm2.D = read_vel(readtable('vel3hv.csv','NumHeaderLines',1));
-vel.helm3.A = read_vel(readtable('vel2hv1.csv','NumHeaderLines',1));
-vel.helm3.D = read_vel(readtable('vel3hv1.csv','NumHeaderLines',1));
+% 40 Hz
+vel.helm1.B = read_vel(readtable('vel2h.csv','NumHeaderLines',1));
+vel.helm1.C = read_vel(readtable('vel3h.csv','NumHeaderLines',1));
+vel.helmv1.B = read_vel(readtable('vel2hv.csv','NumHeaderLines',1));
+vel.helmv1.C = read_vel(readtable('vel3hv.csv','NumHeaderLines',1));
+% array close
+vel.helm2.B = read_vel(readtable('vel2h1.csv','NumHeaderLines',1));
+vel.helm2.C = read_vel(readtable('vel3h1.csv','NumHeaderLines',1));
+vel.helmv2.B = read_vel(readtable('vel2hv1.csv','NumHeaderLines',1));
+vel.helmv2.C = read_vel(readtable('vel3hv1.csv','NumHeaderLines',1));
+% array further
+vel.helm3.B = read_vel(readtable('vel2h2.csv','NumHeaderLines',1));
+vel.helm3.C = read_vel(readtable('vel3h2.csv','NumHeaderLines',1));
+vel.helmv3.B = read_vel(readtable('vel2hv2.csv','NumHeaderLines',1));
+vel.helmv3.C = read_vel(readtable('vel3hv2.csv','NumHeaderLines',1));
+% 1 parallel 40 and 50 Hz
+vel.helm4.B = read_vel(readtable('vel2pa.csv','NumHeaderLines',1));
+vel.helm4.C = read_vel(readtable('vel3pa.csv','NumHeaderLines',1));
+vel.helmv4.B = read_vel(readtable('vel2pav.csv','NumHeaderLines',1));
+vel.helmv4.C = read_vel(readtable('vel3pav.csv','NumHeaderLines',1));
+% array parallel 40 and 50 Hz
+vel.helm5.B = read_vel(readtable('vel2pa1.csv','NumHeaderLines',1));
+vel.helm5.C = read_vel(readtable('vel3pa1.csv','NumHeaderLines',1));
+vel.helmv5.B = read_vel(readtable('vel2pav1.csv','NumHeaderLines',1));
+vel.helmv5.C = read_vel(readtable('vel3pav1.csv','NumHeaderLines',1));
 %%
 
 for i = 1:length(cte.fh)   
@@ -41,7 +60,7 @@ for i = 1:length(cte.fh)
     V = (cte.c/(2*pi*f_HR))^2*(S_s/l_eq); % volume for f_HR
     width = V/(0.200*h+2*0.078*(0.038+l));
    
-    R = 0.00;
+    R = 0.001;
     Z_HR(i) = R + (1/S_s)*(1i*w*cte.rho_air*l_eq*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
     %Z_HR(i) = (1i*cte.rho_air)*(w*l - (cte.c^2*S_s)/(w*V)); % impedance Helmholtz Resonator
     %Z_HR = (1i*cte.rho_air*cte.c)*(S_vol*tan(k*l)*tan(k*h)-S_s)/(S_vol*tan(k*h)+S_s*tan(k*l)); % better impedance Helmholtz Resonator
@@ -63,21 +82,16 @@ for i = 1:length(cte.fh)
     TL.helmholtz2(i) = 20*log10(0.5*abs(2+(cte.rho_air*cte.c/S_s)*(1/Z_HR2(i))));
     
     %% TMM
-    p1(i) = mic.helm1.A.p(i)*10^6;
-    p2(i) = mic.helm1.D.p(i)*10^6;
-    v1(i) = vel.helm1.A.v(i);
-    v2(i) = -vel.helm1.D.v(i);
-    
-    R = [p2(i), p1(i); -v2(i), -v1(i)];
-    P = [p1(i), p2(i); v1(i), v2(i)];
-    TM.HR(i,:,:) = P/R; % P = T*R
-    TM_11_mag(i) = (TM.HR(i,1,1));
-    TM_12_mag(i) = (TM.HR(i,1,2));
-    TM_21_mag(i) = (TM.HR(i,2,1));
-    TM_22_mag(i) = (TM.HR(i,2,2));
-    
-    TL.HR(i) = 20*log10(abs( TM_11_mag(i) + (S_s/cte.c)*TM_12_mag(i) + (cte.c/S_s)*TM_21_mag(i) + TM_22_mag(i))/2);
- 
+    % 40 Hz
+    [TL.HR_40(i), TM.HR_40(i,:,:)] = TL_HR(mic.helm1, vel.helm1, i);
+    % array close
+    [TL.HR_array_close(i), TM.HR_array_close(i,:,:)] = TL_HR(mic.helm2, vel.helm2, i);
+    % array further
+	[TL.HR_array_further(i), TM.HR_array_further(i,:,:)] = TL_HR(mic.helm3, vel.helm3, i); 
+    % 1 parallel
+	[TL.HR_parallel(i), TM.HR_parallel(i,:,:)] = TL_HR(mic.helm4, vel.helm4, i);
+    % array parallel
+	[TL.HR_parallel_array(i), TM.HR_parallel_array(i,:,:)] = TL_HR(mic.helm5, vel.helm5, i);
 
 end
 
@@ -89,13 +103,35 @@ disp(strcat('width: ',num2str(width)))
 
 figure(2), hold on
 plot(cte.fh, abs(TL.helmholtz1))
-plot(cte.fh, abs(TL.HR)), xlabel("f [Hz]"), ylabel("TL - Helmholtz resonator [dB]")
+plot(cte.fh, abs(TL.HR_40)), xlabel("f [Hz]"), ylabel("TL - Helmholtz resonator [dB]")
 legend('Analytical', 'Numerical')
 
-figure(3),
-plot(cte.fh, abs(TL.helmholtz2)), xlabel("f [Hz]"), ylabel("TL - Series Helmholtz resonators [dB]")
+figure(3), hold on
+plot(cte.fh, TM.HR_40(:,1,2))
+plot(cte.fh, TM.HR_array_close(:,1,2))
+plot(cte.fh, TM.HR_array_further(:,1,2))
+xlabel("f [Hz]"), ylabel("T11")
+legend('40 Hz', 'Array close', 'Array further')
+
+figure(4), hold on
+plot(cte.fh, abs(TL.HR_40))
+plot(cte.fh, abs(TL.HR_array_close))
+plot(cte.fh, abs(TL.HR_array_further))
+xlabel("f [Hz]"), ylabel("TL - Array HR [dB]")
+legend('40 Hz', 'Array close', 'Array further')
+
+figure(5), hold on
+plot(cte.fh, abs(TL.HR_parallel))
+plot(cte.fh, abs(TL.HR_parallel_array))
+xlabel("f [Hz]"), ylabel("TL - Parallel HR [dB]")
+legend('1 parallel', 'Array parallel')
+
+
+% figure(3),
+% plot(cte.fh, abs(TL.helmholtz2)), xlabel("f [Hz]"), ylabel("TL - Series Helmholtz resonators [dB]")
 
 tilefigs
+
 %% Functions
 function table = read_vel(T)
     cte = set_cte();
@@ -106,3 +142,25 @@ function table = read_vel(T)
     table.phase = T.Angle_degrees__Phase*(pi/180); 
 end
 
+function [TL, TM] = TL_HR(mic, vel, i)
+    cte = set_cte();
+    f = cte.fh(i);
+    w = 2*pi*f;
+    D_neck = cte.D*0.15; 
+    S_s = pi*(D_neck/2)^2;
+
+    p1(i) = mic.B.p(i)*10^6;
+    p2(i) = mic.C.p(i)*10^6;
+    v1(i) = vel.B.v(i);
+    v2(i) = -vel.C.v(i);
+    
+    R = [p2(i), p1(i); -v2(i), -v1(i)];
+    P = [p1(i), p2(i); v1(i), v2(i)];
+    TM = P/R; % P = T*R
+    TM_11_mag(i) = (TM(1,1));
+    TM_12_mag(i) = (TM(1,2));
+    TM_21_mag(i) = (TM(2,1));
+    TM_22_mag(i) = (TM(2,2));
+    
+    TL = 20*log10(abs( TM_11_mag(i) + (S_s/cte.c)*TM_12_mag(i) + (cte.c/S_s)*TM_21_mag(i) + TM_22_mag(i))/2);
+end

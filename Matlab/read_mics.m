@@ -74,15 +74,50 @@ mic.helm1.B = read_table(readtable('mic2h.csv','NumHeaderLines',1));
 mic.helm1.C = read_table(readtable('mic3h.csv','NumHeaderLines',1));
 mic.helm1.D = read_table(readtable('mic4h.csv','NumHeaderLines',1));
 
-mic.helm2.A = read_table(readtable('mic1hv.csv','NumHeaderLines',1));
-mic.helm2.B = read_table(readtable('mic2hv.csv','NumHeaderLines',1));
-mic.helm2.C = read_table(readtable('mic3hv.csv','NumHeaderLines',1));
-mic.helm2.D = read_table(readtable('mic4hv.csv','NumHeaderLines',1));
+mic.helmv1.A = read_table(readtable('mic1hv.csv','NumHeaderLines',1));
+mic.helmv1.B = read_table(readtable('mic2hv.csv','NumHeaderLines',1));
+mic.helmv1.C = read_table(readtable('mic3hv.csv','NumHeaderLines',1));
+mic.helmv1.D = read_table(readtable('mic4hv.csv','NumHeaderLines',1));
 
-mic.helm3.A = read_table(readtable('mic1hv1.csv','NumHeaderLines',1));
-mic.helm3.B = read_table(readtable('mic2hv1.csv','NumHeaderLines',1));
-mic.helm3.C = read_table(readtable('mic3hv1.csv','NumHeaderLines',1));
-mic.helm3.D = read_table(readtable('mic4hv1.csv','NumHeaderLines',1));
+% array close
+mic.helm2.A = read_table(readtable('mic1h1.csv','NumHeaderLines',1));
+mic.helm2.B = read_table(readtable('mic2h1.csv','NumHeaderLines',1));
+mic.helm2.C = read_table(readtable('mic3h1.csv','NumHeaderLines',1));
+mic.helm2.D = read_table(readtable('mic4h1.csv','NumHeaderLines',1));
+mic.helmv2.A = read_table(readtable('mic1hv1.csv','NumHeaderLines',1));
+mic.helmv2.B = read_table(readtable('mic2hv1.csv','NumHeaderLines',1));
+mic.helmv2.C = read_table(readtable('mic3hv1.csv','NumHeaderLines',1));
+mic.helmv2.D = read_table(readtable('mic4hv1.csv','NumHeaderLines',1));
+
+% array further
+mic.helm3.A = read_table(readtable('mic1h2.csv','NumHeaderLines',1));
+mic.helm3.B = read_table(readtable('mic2h2.csv','NumHeaderLines',1));
+mic.helm3.C = read_table(readtable('mic3h2.csv','NumHeaderLines',1));
+mic.helm3.D = read_table(readtable('mic4h2.csv','NumHeaderLines',1));
+mic.helmv3.A = read_table(readtable('mic1hv2.csv','NumHeaderLines',1));
+mic.helmv3.B = read_table(readtable('mic2hv2.csv','NumHeaderLines',1));
+mic.helmv3.C = read_table(readtable('mic3hv2.csv','NumHeaderLines',1));
+mic.helmv3.D = read_table(readtable('mic4hv2.csv','NumHeaderLines',1));
+
+% 40 and 50 Hz - 1 parallel
+mic.helm4.A = read_table(readtable('mic1pa.csv','NumHeaderLines',1));
+mic.helm4.B = read_table(readtable('mic2pa.csv','NumHeaderLines',1));
+mic.helm4.C = read_table(readtable('mic3pa.csv','NumHeaderLines',1));
+mic.helm4.D = read_table(readtable('mic4pa.csv','NumHeaderLines',1));
+mic.helmv4.A = read_table(readtable('mic1pav.csv','NumHeaderLines',1));
+mic.helmv4.B = read_table(readtable('mic2pav.csv','NumHeaderLines',1));
+mic.helmv4.C = read_table(readtable('mic3pav.csv','NumHeaderLines',1));
+mic.helmv4.D = read_table(readtable('mic4pav.csv','NumHeaderLines',1));
+
+% 40 and 50 Hz - array
+mic.helm5.A = read_table(readtable('mic1pa1.csv','NumHeaderLines',1));
+mic.helm5.B = read_table(readtable('mic2pa1.csv','NumHeaderLines',1));
+mic.helm5.C = read_table(readtable('mic3pa1.csv','NumHeaderLines',1));
+mic.helm5.D = read_table(readtable('mic4pa1.csv','NumHeaderLines',1));
+mic.helmv5.A = read_table(readtable('mic1pav1.csv','NumHeaderLines',1));
+mic.helmv5.B = read_table(readtable('mic2pav1.csv','NumHeaderLines',1));
+mic.helmv5.C = read_table(readtable('mic3pav1.csv','NumHeaderLines',1));
+mic.helmv5.D = read_table(readtable('mic4pav1.csv','NumHeaderLines',1));
 
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);
