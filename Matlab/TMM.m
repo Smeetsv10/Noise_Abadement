@@ -6,6 +6,7 @@ cte = set_cte();
 mic = read_mics();
 S_s = (pi/4)*cte.D^2;
 
+mic.other.A = read_table(readtable('40hz_SR_large_mic_A.csv','NumHeaderLines',1));
 vel.helm1.A = read_vel(readtable('vel2h.csv','NumHeaderLines',1));
 vel.helm1.D = read_vel(readtable('vel3h.csv','NumHeaderLines',1));
 vel.helm2.A = read_vel(readtable('vel2hv.csv','NumHeaderLines',1));
@@ -15,14 +16,14 @@ vel.helm3.D = read_vel(readtable('vel3hv1.csv','NumHeaderLines',1));
 
 for i = 1:length(cte.fh)   
     f = cte.fh(i);
-    
+    p1_other(i) = mic.other.A.p(i)*10^6;
     p1(i) = mic.helm1.A.p(i)*10^6;
     p2(i) = mic.helm1.D.p(i)*10^6;
     v1(i) = vel.helm1.A.v(i);
     v2(i) = -vel.helm1.D.v(i);
     R = [p2(i), p1(i); -v2(i), -v1(i)];
     P = [p1(i), p2(i); v1(i), v2(i)];
-    TM = R/P;
+    TM = P/R; % P = T*R
     TM_11_mag(i) = (TM(1,1));
     TM_12_mag(i) = (TM(1,2));
     TM_21_mag(i) = (TM(2,1));
@@ -56,13 +57,14 @@ end
 figure(2),
 plot(cte.fh, TL.HR), xlabel('f [Hz]'), ylabel('TL [dB]')
 
+
 %% Function
 function table = read_vel(T)
     cte = set_cte();
     S_s = (pi/4)*cte.D^2;
     
     table.freq = T.x_Frequency_Hz_;
-    table.v = cte.rho_air*S_s*T.Velocity_mm_sec__Magnitude/10^-3;
+    table.v = cte.rho_air*S_s*T.Velocity_mm_sec__Magnitude*10^-3;
     table.phase = T.Angle_degrees__Phase*(pi/180); 
 end
 

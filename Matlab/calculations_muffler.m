@@ -91,7 +91,7 @@ end
 for i = 1:length(cte.fh)
     %% Helmholtz
     
-    %[ILh.helm(i),TLh.helm(i)] = TL_helmholtz(mic.helm, cte, i);
+    [ILh.helm(i),TLh.helm(i)] = TL_helmholtz(mic.helm1, cte, i);
 end
 %     figure(12),
 %     plot(t*1000, tot_steel_price, t*1000, tot_titanium_price), xlabel("thickness [mm]"), ylabel("Price [eur]")
