@@ -74,12 +74,15 @@ mic.helm1.B = read_table(readtable('mic2h.csv','NumHeaderLines',1));
 mic.helm1.C = read_table(readtable('mic3h.csv','NumHeaderLines',1));
 mic.helm1.D = read_table(readtable('mic4h.csv','NumHeaderLines',1));
 
-mic.helm2.A = read_table(readtable('mic1h.csv','NumHeaderLines',1));
-mic.helm2.B = read_table(readtable('mic2h.csv','NumHeaderLines',1));
-mic.helm2.C = read_table(readtable('mic3h.csv','NumHeaderLines',1));
-mic.helm2.D = read_table(readtable('mic4h.csv','NumHeaderLines',1));
+mic.helm2.A = read_table(readtable('mic1hv.csv','NumHeaderLines',1));
+mic.helm2.B = read_table(readtable('mic2hv.csv','NumHeaderLines',1));
+mic.helm2.C = read_table(readtable('mic3hv.csv','NumHeaderLines',1));
+mic.helm2.D = read_table(readtable('mic4hv.csv','NumHeaderLines',1));
 
-
+mic.helm3.A = read_table(readtable('mic1hv1.csv','NumHeaderLines',1));
+mic.helm3.B = read_table(readtable('mic2hv1.csv','NumHeaderLines',1));
+mic.helm3.C = read_table(readtable('mic3hv1.csv','NumHeaderLines',1));
+mic.helm3.D = read_table(readtable('mic4hv1.csv','NumHeaderLines',1));
 
 %% Power 
 power.normal.real = importdata('power_normal.csv').data(:,2);

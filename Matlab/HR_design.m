@@ -33,7 +33,7 @@ for i = 1:length(cte.fh)
     width = V/(0.200*h+2*0.078*(0.038+l));
    
     R = 0.25;
-    Z_HR(i) = R + (1/S_s)*(1i*w*cte.rho_air*l_eq*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
+    Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l_eq*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
     %Z_HR(i) = (1i*cte.rho_air)*(w*l - (cte.c^2*S_s)/(w*V)); % impedance Helmholtz Resonator
     %Z_HR = (1i*cte.rho_air*cte.c)*(S_vol*tan(k*l)*tan(k*h)-S_s)/(S_vol*tan(k*h)+S_s*tan(k*l)); % better impedance Helmholtz Resonator
     
