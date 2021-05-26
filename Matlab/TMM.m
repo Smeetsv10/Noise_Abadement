@@ -2,9 +2,20 @@ clear
 close all
 
 %% TMM
-p_i = 10;
+mic = read_mics();
+vel = readtable('air_cavity_sim2.csv','NumHeaderLines',1);
+f = (20:2.5:2000);
+for i = 1:length(f)
+    if isnan(vel.Var1(i))
+        vel(i,:) = [];
+    end
+end
+disp(vel)
+
+for i = 1:length(mic.expCh.B.p)
+p_i = mic.expCh.B.p(i);
 v_xi = 10;
-p_o = 10;
+p_o =  mic.expCh.C.p(i);
 v_xo = 1.2;
 
 syms T11 T12 T21 T22
@@ -16,4 +27,6 @@ eq4 = T21*p_o+T22*v_xo == v_xi;
 [A,B] = equationsToMatrix([eq1, eq2, eq3, eq4], [T11, T12, T21, T22]);
 T = linsolve(A,B);
 
-TM = [T(1), T(2); T(3), T(4)]
+TM = [T(1), T(2); T(3), T(4)];
+
+end

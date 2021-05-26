@@ -15,7 +15,7 @@ for i = 1:length(cte.f)
     % resonator 1 (f = 40 Hz):
     f_HR = 40;
     [IL.helmholtz1(i),TL.helmholtz1(i), Z_HR_40(i)] = HR_IL_TL(f_HR, cte, i);
-    TM(:,:,i) = [1,0; 1/Z_HR_40(i) 1]; 
+    TM(:,:,i) = [1,0; 1/Z_HR_40(i) 1/cte.rho_air];
     TL.HR(i) = 20*log10( abs(TM(1,1,i) + (S/cte.c)*TM(1,2,i) + (cte.c/S)*TM(2,1,i) + TM(2,2,i) )/2 );
     
     % resonator 1 (f = 1640 Hz):
@@ -36,7 +36,7 @@ for i = 1:length(cte.f)
     IL.lambda4(i) = 0;
     TL.lambda4(i) = 10*log10((tan(k*H)^2+4*(S_1/S_s)^2)/(4*(S_1/S_s)^2)); %-20*log(abs(2/(2+1i*(S_s/S_1)*tan(k*H)))); % same formula as before, but simplified
  
-    %% TMM
+    %% TMM 
     p_i = 10;
     v_xi = 10;
     p_o = 1.5;
@@ -51,8 +51,8 @@ for i = 1:length(cte.f)
     [A,B] = equationsToMatrix([eq1, eq2, eq3, eq4], [T11, T12, T21, T22]);
     T = linsolve(A,B);
     
-    TM = [T(1), T(2); T(3), T(4)]
-    %
+    TM = [T(1), T(2); T(3), T(4)];
+
 end
 
 %% Plotting
@@ -103,7 +103,6 @@ function [IL, TL, Z_HR] = HR_IL_TL(f_HR, cte, i)
 
     %Z_HR(i) = (1/S_s)*(1i*w*cte.rho_air*l*S_s + (cte.rho_air*cte.c^2*S_s^2)/(1i*w*V)); % impedance Helmholtz Resonator
     Z_HR = (1i*cte.rho_air*cte.c)*(S_vol*tan(k*l)*tan(k*h)-S_s)/(S_vol*tan(k*h)+S_s*tan(k*l)); % better impedance Helmholtz Resonator
-    
     
     f_res = (cte.c/(2*pi))*(D_neck/D_vol)*sqrt(1/(l*h));
     
