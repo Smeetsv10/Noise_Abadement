@@ -44,13 +44,8 @@ for i = 1:length(cte.fh)
     %% Series HR
     M = cte.rho_air*S_s*l_eq;
     K = cte.rho_air*cte.c^2*S_s^2/V;
-    a11 = -w^2*M+1i*w*R+K;
-    a12 = -K;
-    a21 = -K;
-    a22 = -w^2*M+1i*w*R+ K;
-    
-    Z_HR2(i) = 1/(1i*w*S_s^2)*(a11*a22-a12*a21)/a22;
-    TL.helmholtz2(i) = 20*log10(0.5*abs(2+(cte.rho_air*cte.c/S_s)*(1/Z_HR2(i))));
+    a11 = -w^2*M+1i*w*R
+    Z_r = 1/(1i*w*S_s^2)*(a11*a22-a12*a21)/a22;
     
    %% Plotting
    if i==1
@@ -68,5 +63,5 @@ figure(2),
 plot(cte.fh, abs(TL.helmholtz1)), xlabel("f [Hz]"), ylabel("TR - Helmholtz resonator [dB]")
 
 figure(3),
-plot(cte.fh, abs(TL.helmholtz2)), xlabel("f [Hz]"), ylabel("TR - Series Helmholtz resonators [dB]")
+plot(cte.fh, abs(Z_HR)), xlabel("f [Hz]"), ylabel("TR - Helmholtz resonator [dB]")
     
