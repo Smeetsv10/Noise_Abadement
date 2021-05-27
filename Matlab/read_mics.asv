@@ -75,11 +75,10 @@ mic.ab_tot.C = read_table(readtable('mic33.csv','NumHeaderLines',1));
 mic.ab_tot.D = read_table(readtable('mic44.csv','NumHeaderLines',1));
 
 % Helmholtz
-mic.helm_new.B = read_table(readtable('micbh.csv','NumHeaderLines',1));
-mic.helm_new.C = read_table(readtable('micch.csv','NumHeaderLines',1));
-mic.helm_newv.B = read_table(readtable('micbhv.csv','NumHeaderLines',1));
-mic.helm_newv.C = read_table(readtable('micchv.csv','NumHeaderLines',1));
-
+mic.helmbh.B = read_table(readtable('micbh.csv','NumHeaderLines',1));
+mic.helmch.C = read_table(readtable('micch.csv','NumHeaderLines',1));
+mic.helmbhv.B = read_table(readtable('micbhv.csv','NumHeaderLines',1));
+mic..C = read_table(readtable('micchb.csv','NumHeaderLines',1));
 mic.helm1.A = read_table(readtable('mic1h.csv','NumHeaderLines',1));
 mic.helm1.B = read_table(readtable('mic2h.csv','NumHeaderLines',1));
 mic.helm1.C = read_table(readtable('mic3h.csv','NumHeaderLines',1));
