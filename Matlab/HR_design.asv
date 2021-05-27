@@ -107,6 +107,9 @@ for i = 1:length(cte.fh)
     R = [pi1(i), pi2(i); vi1(i), vi2(i)];
     T(i,:,:) = P/R;
     
+    TM(:,:) = TM(i,:,:);
+    TM2(i,:,:) = TM(:,:)^2;
+    
     TL_4eq(i)= 20*log10(abs(  T(i,1,1) + (S_s/cte.c)*T(i,1,2)  + (cte.c/S_s)*T(i,2,1) + T(i,2,2) )/2);
     
     %[p1(i), p2(i)] = TL_helmholtz(mic.helm1, cte, i);
@@ -151,31 +154,23 @@ legend('4 eq method', 'symmetry', 'amplidute')
 figure(7)
 subplot(4,1,1), hold on
 plot(cte.fh, TM.HR2(:,1,1)),
+plot(cte.fh, TM(:,1,1)),
 plot(cte.fh, TM.HR_array_close(:,1,1)),
-plot(cte.fh, TM.HR_array_further(:,1,1)),
-legend('40 Hz^2', 'Array close', 'Array further')
+legend('40 Hz', 'Array')
 subplot(4,1,2), hold on
 plot(cte.fh, TM.HR2(:,1,2)),
+plot(cte.fh, TM(:,1,2)),
 plot(cte.fh, TM.HR_array_close(:,1,2)),
-plot(cte.fh, TM.HR_array_further(:,1,2)),
-legend('40 Hz^2', 'Array close', 'Array further')
+legend('40 Hz', 'Array')
 subplot(4,1,3), hold on
 plot(cte.fh, TM.HR2(:,2,1)),
 plot(cte.fh, TM.HR_array_close(:,2,1)),
-plot(cte.fh, TM.HR_array_further(:,2,1)),
-legend('40 Hz^2', 'Array close', 'Array further')
+legend('40 Hz', 'Array')
 subplot(4,1,4), hold on
 plot(cte.fh, TM.HR2(:,2,2))
 plot(cte.fh, TM.HR_array_close(:,2,2))
-plot(cte.fh, TM.HR_array_further(:,2,2))
-legend('40 Hz^2', 'Array close', 'Array further')
+legend('40 Hz^2', 'Array')
 
-figure(8), hold on
-plot(cte.fh, mic.helm1.B.p)
-plot(cte.fh, mic.helm2.B.p)
-plot(cte.fh, mic.helm3.B.p)
-xlabel('f'), ylabel('pressure')
-legend('40 Hz', 'Array close', 'Array further')
 tilefigs
 
 %% Functions
