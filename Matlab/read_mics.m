@@ -30,6 +30,12 @@ mic.vibro.B = read_table(readtable('mic2v.csv','NumHeaderLines',1));
 mic.vibro.C = read_table(readtable('mic3v.csv','NumHeaderLines',1));
 mic.vibro.D = read_table(readtable('mic4v.csv','NumHeaderLines',1));
 
+mic.vibro5.A = read_table(readtable('mic1v5.csv','NumHeaderLines',1));
+mic.vibro5.B = read_table(readtable('mic2v5.csv','NumHeaderLines',1));
+mic.vibro5.C = read_table(readtable('mic3v5.csv','NumHeaderLines',1));
+mic.vibro5.D = read_table(readtable('mic4v5.csv','NumHeaderLines',1));
+
+
 % Absorbing material
 mic.ab20.A = read_table(readtable('mic1ab20.csv','NumHeaderLines',1));
 mic.ab20.B = read_table(readtable('mic2ab20.csv','NumHeaderLines',1));

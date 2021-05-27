@@ -46,6 +46,7 @@ for i = 1:length(cte.f)
     
     
     [IL.vibro_NX(i),TL.vibro_NX(i)] = calc_IL_TL(mic.vibro, cte, i);
+    [IL.vibro5_NX(i),TL.vibro5_NX(i)] = calc_IL_TL(mic.vibro5, cte, i);
 
     power.steel05.dB(i) = 10*log10( sqrt(power.steel05.real(i)^2+power.steel05.imag(i)^2) / cte.power_ref);
     power.steel15.dB(i) = 10*log10( sqrt(power.steel15.real(i)^2+power.steel15.imag(i)^2) / cte.power_ref);

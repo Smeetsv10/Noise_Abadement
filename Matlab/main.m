@@ -3,7 +3,7 @@ close all
 
 %% Initialize parameters
 cte = set_cte();
-figures = [false, false, false, false, true]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing, HR
+figures = [false, false, false, true, false]; % Expansion chamber, Vibro Acoustics, Optimisation, Absorbing, HR
 
 
 %% Calculations
@@ -41,8 +41,8 @@ if figures(3)
     plot(cte.f, power.expCh.dB), xlabel("f [Hz]"), ylabel("Radiated power [dB]")
     
     figure(6),
-    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.vibro_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
-    legend('Expansion chamber', 'Vibro Acoustics')
+    plot(cte.f, abs(TL.expansion_NX), cte.f, abs(TL.vibro_NX), cte.f, abs(TL.vibro5_NX)), xlabel("f [Hz]"), ylabel("TL [dB]")
+    legend('Expansion chamber', 'Vibro Acoustics steel 1,5mm','Vibro Acoustics steel 0,5mm')
 
     figure(7),
     plot(cte.f, IL.expansion_NX, cte.f, IL.vibro_NX), xlabel("f [Hz]"), ylabel("IL [dB]")
@@ -65,6 +65,8 @@ end
 if figures(4)
     
     % Absorbing material
+    
+    
     figure(11),
     plot(cte.f, abs(TL.ab20_NX), cte.f, abs(TL.ab50_NX), cte.f, abs(TL.ab80_NX),cte.f,abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL - Absorbing [dB]")
     legend('20mm', '50mm','80mm','Expansion chamber')
@@ -73,6 +75,10 @@ if figures(4)
     legend('20mm', '50mm','80mm', 'Expansion chamber')
     
     % Perforated tube
+    figure(),
+    plot(cte.f, abs(TL.perf_NX), cte.f, abs(TL.expansion_NX)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
+    legend('with perforated', 'without perforated')
+    
     figure(13),
     plot(cte.f, abs(TL.perf_small_NX), cte.f, abs(TL.perf_large_NX),cte.f,abs(TL.inlet_outlet_NX)), xlabel("f [Hz]"), ylabel("TL - Perforated [dB]")
     legend('small holes', 'large holes','inlet/outlet')
